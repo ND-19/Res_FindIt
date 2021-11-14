@@ -1,0 +1,25 @@
+.leaflet-container {
+  width: 100%;
+  height: 100vh;
+}
+table{
+  border-collapse: collapse;
+  width: fit-content;
+}
+td{
+  border: 2px solid black;
+text-align: center;
+/* white-space: nowrap;*/
+
+}
+tr:nth-child(odd) td:first-child {
+  background-color: lightskyblue;
+}
+tr:nth-child(even) td:first-child {
+  background-color: lightsalmon;
+}
+tr td:nth-child(2){
+  background-color: lightslategray;
+color: white;
+font-weight: bold;
+}
