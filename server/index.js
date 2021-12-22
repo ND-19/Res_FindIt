@@ -1,22 +1,25 @@
 const express = require("express");
-const app = express();
 const cors = require("cors")
-const port = process.env.PORT || 5000;
-// const {Client} = require('pg');
-// const client = new Client({
-//     user: "postgres",
-//     password: "1234",
-//     host: "localhost",
-//     port: 5433,
-//     database: "zomato2",
-// });
+const db = config.get('mongoURILocal')
 
-const distanceRoute = require("./routes/distanceRoute");
+const port = process.env.PORT || 5000;
+const app = express();
 app.use(express.json())
 app.use(cors())
-app.use("/api/distance", distanceRoute);
+
+
+app.use("/api/distance", require("./routes/distanceRoute"));
+app.use('/api/bookings',require('./routes/bookings'))
+
+mongoose.connect(db,{ useUnifiedTopology: true ,useNewUrlParser: true, useCreateIndex: true })
+    .then(() => console.log("MongoDB connected"))
+    .catch(err => console.log(err))
 
 
 app.listen(port, () =>
     console.log(`Server running on port no. ${port} using Nodemon`)
 );
+
+
+
+
