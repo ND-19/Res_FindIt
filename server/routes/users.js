@@ -5,14 +5,20 @@ const router = express.Router()
 //User model
 const User = require('../models/User')
 
-// @route GET api/users/:id
-// @desc fetch a user
-router.get('/:userId',  (req, res) => {
+// @route POST api/users/user
+// @desc authenticate a user
+router.post('/user',  (req, res) => {
+    const {email, password} = req.body;
     User.find({
-    "_id": req.params.userId
+    "email": email
     })
     .then(user => {
-        res.json({ user })
+        if(user[0].password==password){
+            const send = {"firstname" : user[0].firstName, "lastname" : user[0].lastName, "email": user[0].email}
+            res.json(send)
+        }else{
+            res.json("Unsuccessful")
+        }
     })
     .catch(err => {
         console.log(err)
@@ -34,17 +40,18 @@ router.get('/',  (req, res) => {
 // @route POST api/users
 // @desc Create a user
 router.post('/', (req, res) => {
-    const { firstName, lastName, email, dob } = req.body;
+    const { firstName, lastName, email, dob, password } = req.body;
     User.findOne({email})
     .then( user => {
         if(user){
-            res.status(400).json({ msg: "User already exists" });
+            return res.status(400).json({ msg: "User already exists" });
          } 
          const newUser = new User({
              firstName,
              lastName,
              email,
              dob,
+             password
          })
 
          

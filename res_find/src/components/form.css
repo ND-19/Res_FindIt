@@ -1,0 +1,15 @@
+.form-group{
+    padding-top: 2px;
+}
+.btn{
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    background: linear-gradient(to right, #fc4958, #e85d04);
+}
+.signup{
+    box-shadow: black;
+}
+p{
+    margin: auto;
+}
