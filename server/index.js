@@ -1,15 +1,19 @@
 const express = require("express");
+const mongoose = require("mongoose")
 const cors = require("cors")
+const config = require("config")
 const db = config.get('mongoURILocal')
 
 const port = process.env.PORT || 5000;
 const app = express();
+
 app.use(express.json())
 app.use(cors())
 
 
 app.use("/api/distance", require("./routes/distanceRoute"));
 app.use('/api/bookings',require('./routes/bookings'))
+app.use('/api/users',require('./routes/users'))
 
 mongoose.connect(db,{ useUnifiedTopology: true ,useNewUrlParser: true, useCreateIndex: true })
     .then(() => console.log("MongoDB connected"))

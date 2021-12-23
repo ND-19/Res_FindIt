@@ -1,8 +1,8 @@
 {
-    "mongoURILocal": "mongodb+srv://ammar:fs3pbJH6rOeBCeNE@turfit.n2qqf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "mongoURILocal": "mongodb+srv://ammar:BBv2uNSM8avrB059@turfit.n2qqf.mongodb.net/Turfit?retryWrites=true&w=majority",
     "postgresData":{"user": "postgres", 
     "database": "zomato2", 
-    "password": 1234, 
+    "password": "1234", 
     "host": "localhost",
     "port": 5433, 
     "max": 10, 

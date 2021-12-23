@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const HotelSchema = require('./Hotel').schema
+const RestaurantSchema = require('./Restaurant').schema
 const UserSchema = require('./User').schema
 
 const BookingSchema = new Schema({
@@ -8,21 +8,27 @@ const BookingSchema = new Schema({
         type: String, 
         required: true
     },
-    hotelId: {
+    restaurantId: {
         type: String,
         required: true
     },
-    timing: {
-        type: Date,
-        required: true
+    date: {
+        type: String,
+        required: true,
+        default: Date.now
     },
-    hotel: {
-        type: HotelSchema,
+    restaurant: {
+        type: RestaurantSchema,
         required: true
     },
     user: {
         type: UserSchema
     },
-},{ timestamps: true })
+    time:{
+            type: String,
+            required: true
+    },
+    }
+)
 
 module.exports = Booking = mongoose.model('booking', BookingSchema)

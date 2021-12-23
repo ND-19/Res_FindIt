@@ -52,4 +52,13 @@ router.get("/distancewithin/:id/:radius", async (req, res) => {
         console.log('Database ' + err)
     }
 });
+router.get("/userdistancewithin/:point/:radius", async (req, res) => {
+    try {
+        const { rows } = await query('SELECT p2.*,ST_Distance(ST_Transform(p2.geometry,26986),ST_Transform(ST_GeomFromText($1,4326),26986))/1000 AS Distance FROM (SELECT * FROM restaurants2.restaurant2 as p1 WHERE ST_DWithin(ST_Transform(p1.geometry,26986),ST_Transform(ST_GeomFromText($1,4326),26986),$2)) p2',[req.params.point,parseFloat(req.params.radius)*1000])
+        res.send(rows)
+        
+    } catch (err) {
+        console.log('Database ' + err)
+    }
+});
 module.exports = router;
