@@ -10,6 +10,7 @@ import Services from './components/Services';
 import scrollreveal from "scrollreveal";
 import Form from "./components/signupandlogin";
 import SignUp from "./components/signup";
+import Profile from './components/Profile'
 
 function App() {
   useEffect(() => {
@@ -55,7 +56,7 @@ function App() {
         
       <Switch>
       <Route exact path="/" component={Home} />
-      
+      <Route exact path="/profile" component={Profile}/>
       <Route  exact path="/login" component={Form}/>
       <Route exact path="/locator" component={Locator} />
       </Switch>

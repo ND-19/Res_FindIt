@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { Card, CardImg, CardBody, CardText, CardHeader, Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, DropdownItem, Col, Button, ButtonDropdown, FormFeedback, DropdownToggle, DropdownMenu } from 'reactstrap';
 import img from '../resources/restaurant.jpg';
-
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../button.css'
 
 
 function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
     const [radius, setradius] = useState(1)
+    const user = JSON.parse(localStorage.getItem('currentUser'));
     const [modal, setmodal] = useState(false)
-    const [firstname, setfirstname] = useState('');
-    const [lastname, setlastname] = useState('');
-    const [email, setemail] = useState('');
+    const [firstname, setfirstname] = useState(`${user.firstName}`);
+    const [lastname, setlastname] = useState(`${user.lastName}`);
+    const [email, setemail] = useState(`${user.email}`);
+    
     const [telnum, settelnum] = useState('');
     const [date, setdate] = useState('');
     const [time, settime] = useState('');
@@ -33,10 +35,25 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
 
 
     const handleSubmit = (event) => {
-
-        console.log('Current State is: ' + JSON.stringify(time));
-        alert('Current State is: ' + JSON.stringify(time));
         event.preventDefault();
+    }
+
+    const onReserve = () => {
+        const Restaurant = {"name": restaurant.name,"locality": restaurant.locality,"address": restaurant.address,"AvgCostForTwo": restaurant.average_cost_for_two}
+        async function fetchData() {
+            try {
+                const results = await(
+                    await axios.post(`http://localhost:5000/api/bookings/${restaurant.res_id}`,{"userId": user._id,date,time,Restaurant,"numberOfPeople": dropdownValue, "email" : user.email})).data;
+                    
+                    alert(results.msg)
+                    setmodal(!modal)
+    
+            } catch (error) {
+                console.log(error);
+    
+            }
+        }
+        fetchData();
     }
 
     const validate = (firstname, lastname, telnum, email, dropdownValue) => {
@@ -134,7 +151,7 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
                     style={{ width: "100%", backgroundColor: "lightcoral", height: "30px", borderRadius: "0px", borderTop: "1px solid black" }}
                 >Locate</button>
                 <button
-                    outline onClick={() => { setmodal(!modal) }} style={{ color: 'white' }}
+                     onClick={() => { setmodal(!modal) }} style={{ color: 'white' }}
                     className='button'
                     style={{ width: "100%", backgroundColor: "red", height: "30px", borderRadius: "0px", borderTop: "1px solid black" }}
                 >Reserve Table</button>
@@ -232,7 +249,7 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
                                 </FormGroup>
                                 <FormGroup row>
                                     <Col md={{ size: 10, offset: 2 }}>
-                                        <Button style={{marginLeft:"0px"}} type="submit" color="primary">
+                                        <Button style={{marginLeft:"0px"}} type="submit" color="primary" onClick={onReserve}>
                                             Reserve
                                         </Button>
                                     </Col>

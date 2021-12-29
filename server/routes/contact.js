@@ -3,44 +3,46 @@ const router = express.Router()
 const nodemailer = require('nodemailer')
 
 const contactEmail = nodemailer.createTransport({
-  service: 'gmail',
+  service: 'Gmail',
   auth: {
-    user: "shaikhmohammedammar62@gmail.com",
-    pass: "F0rgivene$$",
+    user: "nityanshdoshi2001@gmail.com",
+    pass: "********",
   },
-});
-
-contactEmail.verify((error) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Ready to Send");
+  tls: {
+      rejectUnauthorized: false
   }
 });
 
 
-router.post("/", (req, res) => {
-    const name = req.body.name;
-    const email = req.body.email;
-    const message = req.body.message; 
+// contactEmail.verify((error) => {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log("Ready to Send");
+//   }
+// });
+
+
+const Contact = (email, message) => {
+    // const email = req.body.email
+    // const mes = req.body.message
+
     const mail = {
-      from: name,
-      to: "shaikhmohammedammar62@gmail.com",
-      subject: "Contact Form Submission",
-      html: `<p>Name: ${name}</p>
-             <p>Email: ${email}</p>
-             <p>Message: ${message}</p>`,
+      from: "FindIt",
+      to: email,
+      subject: "Thanks for Booking on FindIt",
+      html: `<p>Message: ${message}</p>`,
     };
-    contactEmail.sendMail(mail, (error) => {
-      if (error) {
-        res.json({ status: "ERROR" });
-      } else {
-        res.json({ status: "Message Sent" });
+  
+    contactEmail.sendMail(mail, function(error, res){
+      if(error){
+          console.log(error);
+      }else{
+          res.send('"Success');
       }
-    });
-    
-  });
+    })
+  }
 
 
 
-module.exports = router
+module.exports = Contact

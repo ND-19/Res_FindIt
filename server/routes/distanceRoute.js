@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const query = require("../connection")
 
-router.get("/getrestaurants/:city", async (req, res) => {
+router.get("/getrestaurants/:city/:rating/:costl/:costu/:opentime/:closetime", async (req, res) => {
     try {
-        const { rows } = await query('SELECT * FROM restaurants2.restaurant2 WHERE \"city\"=$1 LIMIT 100', [req.params.city])
+        const { rows } = await query('SELECT * FROM restaurants2.restaurant2 WHERE \"city\"=$1 AND \"aggregate_rating\">=$2 AND \"average_cost_for_two\">=$3 AND \"average_cost_for_two\"<=$4 AND \"open_time\">=$5 AND \"close_time\"<=$6 LIMIT 400', [req.params.city,req.params.rating,req.params.costl,req.params.costu,req.params.opentime,req.params.closetime])
         res.send(rows)
     } catch (err) {
         console.log('Database ' + err)
@@ -32,15 +32,6 @@ router.get("/getdistance/:point", async (req, res) => {
 });
 
 
-router.get("/buffer", async (req, res) => {
-    try {
-        const rows = await query('SELECT ST_AsGeoJSON(ST_GeomFromText(ST_AsText(ST_Buffer(ST_GeomFromText(\'POINT(72 19)\'), 50, \'quad_segs=8\')))) :: json-> \'coordinates\' AS coordinates')
-        // res.send(rows)
-        console.log(rows)
-    } catch (err) {
-        console.log('Database ' + err)
-    }
-});
 
 //Get all the restaurants within certain radius from the selected restaurant
 router.get("/distancewithin/:id/:radius", async (req, res) => {

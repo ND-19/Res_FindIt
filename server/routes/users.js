@@ -9,16 +9,24 @@ const User = require('../models/User')
 // @desc authenticate a user
 router.post('/user',  (req, res) => {
     const {email, password} = req.body;
-    User.find({
-    "email": email
+    User.findOne({
+    "email": email,
+    "password": password,
     })
     .then(user => {
-        if(user[0].password==password){
-            const send = {"firstname" : user[0].firstName, "lastname" : user[0].lastName, "email": user[0].email}
-            res.json(send)
-        }else{
-            res.json("Unsuccessful")
-        }
+    if (user) {
+      const temp = {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        dob: user.dob,
+        _id: user._id,
+      };
+      //   res.send("User login successful");
+      res.send(temp);
+    } else {
+      return res.json( false );
+    }
     })
     .catch(err => {
         console.log(err)

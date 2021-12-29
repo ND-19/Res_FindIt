@@ -21,14 +21,25 @@ const BookingSchema = new Schema({
         type: RestaurantSchema,
         required: true
     },
-    user: {
-        type: UserSchema
+    img:
+    {
+        data: Buffer,
+        contentType: String
     },
     time:{
             type: String,
             required: true
     },
+    numberOfPeople: {
+        type: String,
+        required: true,
+    }
+    // status:{
+    //     type: String,
+    //     required: true,
+    //     default: "booked",
+    // }
     }
 )
-
+//image of restaurant and video
 module.exports = Booking = mongoose.model('booking', BookingSchema)

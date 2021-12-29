@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './form.css';
 import Signup from "./signup";
+// import Locater from "../screens/map.js"
 import { BrowserRouter as Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
 const Login = () => {
@@ -13,7 +14,14 @@ const Login = () => {
             try {
                 const results = await(
                     await axios.post(`http://localhost:5000/api/users/user/`,{email,password})).data;
-    
+                    localStorage.setItem("currentUser", JSON.stringify(results));
+                    if (JSON.parse(localStorage.getItem("currentUser"))) {
+                        window.location.href = "/locator";
+                      } else {
+                        //   console.log("sahil");
+                        alert("Invalid credentials")
+                      }
+                    console.log(results);
             } catch (error) {
                 console.log(error);
     
@@ -21,13 +29,13 @@ const Login = () => {
         }
         fetchData();
     }
-    const login = async () => {
+    // const login = async () => {
 
-          localStorage.setItem("currentUser", 'Nityansh');
+    //       localStorage.setItem("currentUser", 'Nityansh');
 
-          // localStorage.setItem("currentUser", JSON.stringify(result));
-          // window.location.href = "/booknow";
-      };
+    //       // localStorage.setItem("currentUser", JSON.stringify(result));
+    //       // window.location.href = "/booknow";
+    //   };
         return (
             
             <form id="login">

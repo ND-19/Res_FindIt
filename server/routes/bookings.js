@@ -10,6 +10,7 @@ const User = require('../models/User')
 //Restaurant model
 const Restaurant = require('../models/Restaurant')
 
+const Contact = require('./contact')
 // @route GET api/bookings?date=date
 // @desc Get all bookings
 router.get('/',  (req, res) => {
@@ -41,10 +42,10 @@ router.get('/:restaurantId',  (req, res) => {
 
 // @route GET api/bookings/users/:userId
 // @desc Get all bookings of a user
-router.get('/users/:email',  (req, res) => {
+router.get('/users/:id',  (req, res) => {
 
     Booking.find({
-        userId: User.findOne({email:req.params.email})._id
+        userId: req.params.id
     })
     .then(bookings => {
         res.json({ bookings })
@@ -55,20 +56,21 @@ router.get('/users/:email',  (req, res) => {
 })
 
 
-
-
 //@route POST api/bookings/:RestaurantId
 // @desc Book a Restaurant
 // @requires time, restaurant, email
 router.post('/:RestaurantId', (req, res) => {
 
-        let { time, Restaurant, email } = req.body
+        let { time, Restaurant, date, userId, numberOfPeople, email } = req.body
     
         //Check if slot is already booked
         Booking.find({
             time,
             Restaurant,
             restaurantId: req.params.RestaurantId,
+            date,
+            userId,
+            numberOfPeople
         })
         .then(booking => {
     
@@ -83,15 +85,17 @@ router.post('/:RestaurantId', (req, res) => {
             // })
 
             const newBooking = new Booking({
-                userId: user._id,
+                userId,
                 restaurantId: req.params.RestaurantId,
                 time,
                 restaurant: Restaurant,
-                user
+                date,
+                numberOfPeople
             })
         
             newBooking.save()
             .then(booking => {
+                Contact(email, `Thanks for booking: \n Restaurant Name:${booking.restaurant.name} \n Date:${booking.date} \n Time:${booking.time} \n Number of Guest:${booking.numberOfPeople}`)
                 res.json({msg: "Booking successful", booking})
             })
             .catch(err => {
