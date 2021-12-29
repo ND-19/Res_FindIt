@@ -2,9 +2,9 @@
     "mongoURILocal": "mongodb+srv://ammar:BBv2uNSM8avrB059@turfit.n2qqf.mongodb.net/Turfit?retryWrites=true&w=majority",
     "postgresData":{"user": "postgres", 
     "database": "zomato2", 
-    "password": "1234", 
+    "password": "Optics@#12345", 
     "host": "localhost",
-    "port": 5433, 
+    "port": 5432, 
     "max": 10, 
     "idleTimeoutMillis": 30000 
     }

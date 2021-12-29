@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import { BrowserRouter as Switch, Route, Link } from "react-router-dom";
 import axios, { post } from "axios";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 import { Tabs } from 'antd';
 import { Tag, Divider } from "antd";
 const { TabPane } = Tabs;
@@ -59,7 +59,8 @@ export default Profile;
 export function MyBookings() {
     const [bookings, setbookings] = useState([]);
     const [review, setReview] = useState("");
-    const [rating, setRating] = useState("");
+    const [rating, setRating] = useState();
+    const [avgcost, setavgcost] = useState();
     const [file, setfile] = useState(null)
     const user = JSON.parse(localStorage.getItem("currentUser"));
     useEffect(() => {
@@ -120,32 +121,33 @@ export function MyBookings() {
     //         }
     //       }
 
-    //       async function addreview(bookingid, restaurantId) {
-    //         try {
-    //           setloading(true);
-    //           const result = await (
-    //             await axios.post("api/bookings/getbookingsbyuserid/addreview", {
-    //               bookingid,
-    //               restaurantId,
-    //               rating,
-    //               review,
-    //             })
-    //           ).data;
-    //           console.log(result);
-    //         //   setloading(false);
-    //           Swal.fire(
-    //             "Congratulations",
-    //             "Your review has been added successfully",
-    //             "success"
-    //           ).then((result) => {
-    //             window.location.reload();
-    //           });
-    //         } catch (error) {
-    //           console.log(error);
-    //         //   setloading(false);
-    //           Swal.fire("Oops", "Something went wrong", "error");
-    //         }
-    //       }
+          async function addreview(bookingid) {
+            try {
+                console.log(bookingid)
+              const result = await (
+                await axios.post("http://localhost:5000/api/bookings/reviews/addreview", {
+                  bookingid,
+                  rating,
+                  review,
+                  avgcost
+                })
+              ).data;
+              
+              console.log(result);
+            //   setloading(false);
+              Swal.fire(
+                "Congratulations",
+                "Your review has been added successfully",
+                "success"
+              ).then((result) => {
+                window.location.reload();
+              });
+            } catch (error) {
+              console.log(error);
+            //   setloading(false);
+              Swal.fire("Oops", "Something went wrong", "error");
+            }
+          }
 
     return (
         <div className="row">
@@ -176,17 +178,49 @@ export function MyBookings() {
                                 <p>
                                     <b>Address: {booking.restaurant.address}</b>
                                 </p>
+                                <p>
+                                    <b>Rating: </b>
+                                    <input
+                                    type="number"
+                                    placeholder="Rating"
+                                    value={rating}
+                                    name="Rating"
+                                    onChange={(e) => setRating(e.target.value)}
+                                    />
+                                </p>
+                                <br/>
+                                <p>
+                                    <b>Review: </b>
+                                    <textarea
+                                    type="text"
+                                    placeholder="Review"
+                                    value={review}
+                                    name="Review"
+                                    onChange={(e) => setReview(e.target.value)}
+                                    />
+                                </p>
+                                <br/>
+                                <p>
+                                    <b>Average Cost For Two: </b>
+                                    <input
+                                    type="Number"
+                                    placeholder="Average Cost For Two"
+                                    value={avgcost}
+                                    name="Average Cost For Two"
+                                    onChange={(e) => setavgcost(e.target.value)}
+                                    />
+                                </p>
+                                <br/>
+                                <button onClick={()=>{addreview(booking._id)}}>
+                                    Add Review
+                                </button>
+                                <br/><br/>
                                 <form onSubmit={onFormSubmit(booking.restaurant.name)}>
-                                    <h1>File Upload</h1>
+                                    <h5>File Upload</h5>
                                     <input type="file" name="image" onChange={onChange} />
                                     <button type="submit">Upload</button>
                                 </form>
 
-                                {/* {booking.status === "cancelled" ? (
-                      <Tag color="red">CANCELLED</Tag>
-                    ) : (
-                      <Tag color="green">CONFIRMED</Tag>
-                    )} */}
                                 {/* {booking.status !== "cancelled" && (
                       <div className="text-right mt-2">
                         {" "}
@@ -244,21 +278,7 @@ export function MyBookings() {
                             </div>
                         );
                     })}
-                {/* index.css
-                p{
-                    font-size: 16px !important;
-                } */}
             </div>
-            {/* Add the following code in bookingsRoute.js just above exports */}
-            {/* router.post("/getbookingsbyuserid",async(req,res)=>{
-                    const userid=req.body.userid
-                    try {
-                        const bookings=await Bookings.find({userid : userid})
-                        res.send(bookings)
-                    } catch (error) {
-                        return res.status(400).json({error});
-                    }
-            }); */}
         </div>
     );
 }

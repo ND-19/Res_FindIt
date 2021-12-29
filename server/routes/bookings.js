@@ -9,6 +9,8 @@ const Booking = require('../models/Booking')
 const User = require('../models/User')
 //Restaurant model
 const Restaurant = require('../models/Restaurant')
+//Review model
+const Review = require('../models/Review')
 
 const Contact = require('./contact')
 // @route GET api/bookings?date=date
@@ -77,12 +79,6 @@ router.post('/:RestaurantId', (req, res) => {
             if(booking.length !== 0){
                 return res.status(400).json({ msg: "Slot already booked" })            
             }
-            
-            // const user = User.findOne({email})
-            // .then(users => users)
-            // .catch(err => {
-            //     console.log(err)
-            // })
 
             const newBooking = new Booking({
                 userId,
@@ -92,6 +88,7 @@ router.post('/:RestaurantId', (req, res) => {
                 date,
                 numberOfPeople
             })
+            console.log(newBooking)
         
             newBooking.save()
             .then(booking => {
@@ -107,6 +104,35 @@ router.post('/:RestaurantId', (req, res) => {
         })
     })
 
+//add review /addreview
+    router.post('/reviews/addreview', (req, res) => {
+
+        let { bookingId, rating, review, avgcost } = req.body
+    
+        //Check if slot is already booked
+        Booking.find({
+            bookingId
+        })
+        .then(booking => {
+            const newReview = new Review({
+            bookingId,
+            restaurantId: booking.restaurantId,
+            rating,
+            review,
+            averageCostForTwo: avgcost
+           })
+           newReview.save()
+            .then(review => {
+                res.json({msg: "Review added successfully", review})
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        })               
+        .catch(err => {
+            console.log(err)
+        })
+    })  
 
 //@route DELETE api/bookings/:RestaurantId/:bookingId
 // @desc Cancel a booking

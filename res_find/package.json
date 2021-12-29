@@ -21,6 +21,7 @@
     "reactstrap": "^9.0.1",
     "scrollreveal": "^4.0.9",
     "styled-components": "^5.3.3",
+    "sweetalert2": "^11.3.1",
     "turf": "^3.0.14",
     "web-vitals": "^1.0.1"
   },
