@@ -1,0 +1,316 @@
+<mxfile host="65bd71144e">
+    <diagram id="NTOIQphCekF-uRRgmg95" name="Page-1">
+        <mxGraphModel dx="1630" dy="567" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="3" value="FrontEnd(View)" style="swimlane;" parent="1" vertex="1">
+                    <mxGeometry x="-74" y="75" width="1060" height="390" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Home" style="swimlane;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="90" width="200" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Scroll To Top" style="rounded=0;whiteSpace=wrap;html=1;" parent="4" vertex="1">
+                    <mxGeometry x="10" y="30" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Hero" style="rounded=0;whiteSpace=wrap;html=1;" parent="4" vertex="1">
+                    <mxGeometry x="10" y="70" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Service" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="4" vertex="1">
+                    <mxGeometry x="10" y="110" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Login" style="swimlane;startSize=23;" parent="3" vertex="1">
+                    <mxGeometry x="220" y="90" width="433" height="284" as="geometry"/>
+                </mxCell>
+                <mxCell id="66" value="No" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="6" source="25" target="29">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" style="edgeStyle=orthogonalEdgeStyle;html=1;" edge="1" parent="6" source="25" target="67">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="145" y="60"/>
+                            <mxPoint x="145" y="70"/>
+                            <mxPoint x="136" y="70"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="25" value="Signed In" style="rhombus;whiteSpace=wrap;html=1;" parent="6" vertex="1">
+                    <mxGeometry x="155" y="40" width="70" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.496;exitY=0.092;exitDx=0;exitDy=0;exitPerimeter=0;" parent="6" source="6" target="25" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="190" y="25"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="75" value="else" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="6" source="29" target="38">
+                    <mxGeometry x="-0.2242" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="336" y="28"/>
+                            <mxPoint x="72" y="28"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="29" value="Sign In" style="rounded=0;whiteSpace=wrap;html=1;" parent="6" vertex="1">
+                    <mxGeometry x="271" y="40" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="Sign Up" style="rounded=0;whiteSpace=wrap;html=1;" parent="6" vertex="1">
+                    <mxGeometry x="7" y="33" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="67" value="Profile" style="swimlane;" vertex="1" parent="6">
+                    <mxGeometry x="11" y="80" width="396" height="192" as="geometry"/>
+                </mxCell>
+                <mxCell id="74" value="User Info" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="67">
+                    <mxGeometry x="232" y="30" width="120" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Locator" style="swimlane;" parent="3" vertex="1">
+                    <mxGeometry x="661" y="90" width="390" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="Query Parameters" style="rounded=0;whiteSpace=wrap;html=1;" parent="7" vertex="1">
+                    <mxGeometry x="10" y="30" width="180" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Hotel Information" style="rounded=0;whiteSpace=wrap;html=1;" parent="7" vertex="1">
+                    <mxGeometry x="10" y="210" width="180" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="Map" style="swimlane;" parent="7" vertex="1">
+                    <mxGeometry x="10" y="80" width="180" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="Markers" style="rounded=0;whiteSpace=wrap;html=1;" parent="16" vertex="1">
+                    <mxGeometry x="10" y="40" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="Drag-able Marker" style="rounded=0;whiteSpace=wrap;html=1;" parent="16" vertex="1">
+                    <mxGeometry x="10" y="80" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="Booking Modal" style="swimlane;" parent="7" vertex="1">
+                    <mxGeometry x="210" y="110" width="150" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" value="Input Parameters" style="rounded=0;whiteSpace=wrap;html=1;" parent="48" vertex="1">
+                    <mxGeometry x="5" y="30" width="135" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="52" value="Yes" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="7" source="49" target="48" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" value="Book Hotel" style="rhombus;whiteSpace=wrap;html=1;" parent="7" vertex="1">
+                    <mxGeometry x="230" y="30" width="90" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="51" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.487;exitY=0.078;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="7" source="7" target="49" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="230" y="65" as="targetPoint"/>
+                        <mxPoint x="190" y="30" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="190" y="30"/>
+                            <mxPoint x="210" y="30"/>
+                            <mxPoint x="210" y="55"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="58" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="3" source="57" target="4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="59" style="edgeStyle=orthogonalEdgeStyle;html=1;" parent="3" source="57" target="6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="60" style="edgeStyle=orthogonalEdgeStyle;html=1;" parent="3" source="57" target="7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="57" value="Navbar" style="rounded=0;whiteSpace=wrap;html=1;" parent="3" vertex="1">
+                    <mxGeometry x="390" y="30" width="230" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="61" value="Footer" style="swimlane;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="260" width="200" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="62" value="About Us" style="rounded=1;whiteSpace=wrap;html=1;" parent="61" vertex="1">
+                    <mxGeometry x="10" y="30" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="63" value="Contact Us" style="rounded=1;whiteSpace=wrap;html=1;" parent="61" vertex="1">
+                    <mxGeometry x="100" y="30" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="64" value="Media Links" style="rounded=1;whiteSpace=wrap;html=1;" parent="61" vertex="1">
+                    <mxGeometry x="10" y="70" width="150" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="68" value="Bookings" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="166" y="275" width="200" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="69" value="Add review" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="68">
+                    <mxGeometry x="10" y="30" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" value="File Upload" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="68">
+                    <mxGeometry x="10" y="70" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="71" value="Add Rating" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="68">
+                    <mxGeometry x="10" y="110" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="117" value="Database Structure (Model)" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="-44" y="1374" width="1070" height="525" as="geometry"/>
+                </mxCell>
+                <mxCell id="118" value="MongoDB Models" style="swimlane;startSize=23;" vertex="1" parent="117">
+                    <mxGeometry x="25" y="44" width="690" height="456" as="geometry"/>
+                </mxCell>
+                <mxCell id="119" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="118" source="120" target="139">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="242" y="157"/>
+                            <mxPoint x="242" y="252"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="120" value="Bookings" style="swimlane;startSize=23;" vertex="1" parent="118">
+                    <mxGeometry x="28" y="40" width="200" height="236" as="geometry"/>
+                </mxCell>
+                <mxCell id="121" value="User Id" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="120">
+                    <mxGeometry x="7" y="34" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="122" value="Date" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="120">
+                    <mxGeometry x="7" y="66" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="123" value="RestaurantId" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="120">
+                    <mxGeometry x="9" y="102" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="124" value="Image" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="120">
+                    <mxGeometry x="9" y="138" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="125" value="Time" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="120">
+                    <mxGeometry x="9" y="171" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="126" value="Number Of People" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="120">
+                    <mxGeometry x="9" y="204" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="127" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="118" source="128" target="124">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="234" y="98"/>
+                            <mxPoint x="234" y="190"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="128" value="Image" style="swimlane;startSize=23;" vertex="1" parent="118">
+                    <mxGeometry x="248" y="35" width="200" height="118" as="geometry"/>
+                </mxCell>
+                <mxCell id="129" value="Restaurant Name" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="128">
+                    <mxGeometry x="7" y="34" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="130" value="Image" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="128">
+                    <mxGeometry x="7" y="66" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="131" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="118" source="132" target="138">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="132" value="Restaurant" style="swimlane;startSize=23;" vertex="1" parent="118">
+                    <mxGeometry x="478" y="35" width="200" height="188" as="geometry"/>
+                </mxCell>
+                <mxCell id="133" value="Name" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="132">
+                    <mxGeometry x="7" y="34" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="134" value="Locality" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="132">
+                    <mxGeometry x="7" y="66" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="135" value="Address" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="132">
+                    <mxGeometry x="9" y="102" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="136" value="Average Cost for Two" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="132">
+                    <mxGeometry x="9" y="138" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="137" value="Reviews" style="swimlane;startSize=23;" vertex="1" parent="118">
+                    <mxGeometry x="248" y="173" width="200" height="173" as="geometry"/>
+                </mxCell>
+                <mxCell id="138" value="RestaurantId" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="137">
+                    <mxGeometry x="7" y="34" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="139" value="BookingId" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="137">
+                    <mxGeometry x="7" y="66" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="140" value="Rating" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="137">
+                    <mxGeometry x="9" y="102" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="141" value="Review" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="137">
+                    <mxGeometry x="9" y="138" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="142" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="118" source="143" target="121">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="8" y="356"/>
+                            <mxPoint x="8" y="86"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="143" value="User" style="swimlane;startSize=23;" vertex="1" parent="118">
+                    <mxGeometry x="476" y="234" width="200" height="209" as="geometry"/>
+                </mxCell>
+                <mxCell id="144" value="First Name" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="143">
+                    <mxGeometry x="7" y="34" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="145" value="Last Name" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="143">
+                    <mxGeometry x="7" y="66" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="146" value="Email" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="143">
+                    <mxGeometry x="9" y="102" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="147" value="Dob" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="143">
+                    <mxGeometry x="9" y="138" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="148" value="Password" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="143">
+                    <mxGeometry x="13" y="171" width="182" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="149" value="Postgres Model" style="swimlane;" vertex="1" parent="117">
+                    <mxGeometry x="730" y="42" width="321" height="457" as="geometry"/>
+                </mxCell>
+                <mxCell id="152" value="Res_id (Primary Key, Not Null)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="11" y="38" width="291" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="153" value="Name (Text)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="11.5" y="79" width="112.5" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="154" value="Establishment (Text)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="134" y="79" width="154.5" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="155" value="City" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="11" y="126" width="112" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="156" value="Locality" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="134" y="124" width="172.5" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="157" value="Latitude" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="11" y="168" width="132" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="158" value="Longitude" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="150.5" y="168" width="156" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="159" value="Cuisines" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="7.5" y="215" width="131.5" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="160" value="Average Cost for Two" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="8.5" y="258" width="131.5" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="161" value="Price Range" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="8.5" y="298" width="132.5" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="162" value="Highlights" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="150.5" y="212.5" width="131.5" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="163" value="Aggregate Rating" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="150.5" y="254" width="131.5" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="164" value="Votes" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="150.5" y="296" width="131.5" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="165" value="Delivery" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="7.5" y="343" width="132.5" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="166" value="Take Away" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="6.5" y="382" width="132.5" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="167" value="Open Time" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="153" y="338" width="131.5" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="168" value="Close Time" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="153" y="380" width="131.5" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="169" value="Geometry" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="149">
+                    <mxGeometry x="10" y="420" width="277" height="32" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
