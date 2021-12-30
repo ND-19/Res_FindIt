@@ -121,19 +121,18 @@ export function MyBookings() {
     //         }
     //       }
 
-          async function addreview(bookingid) {
+          async function addreview(bookingId, restaurantId) {
             try {
-                console.log(bookingid)
               const result = await (
                 await axios.post("http://localhost:5000/api/bookings/reviews/addreview", {
-                  bookingid,
+                  bookingId,
                   rating,
                   review,
-                  avgcost
+                  avgcost,
+                  restaurantId
                 })
               ).data;
-              
-              console.log(result);
+            
             //   setloading(false);
               Swal.fire(
                 "Congratulations",
@@ -211,7 +210,7 @@ export function MyBookings() {
                                     />
                                 </p>
                                 <br/>
-                                <button onClick={()=>{addreview(booking._id)}}>
+                                <button onClick={()=>{addreview(booking._id, booking.restaurantId)}}>
                                     Add Review
                                 </button>
                                 <br/><br/>

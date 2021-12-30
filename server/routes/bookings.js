@@ -107,16 +107,10 @@ router.post('/:RestaurantId', (req, res) => {
 //add review /addreview
     router.post('/reviews/addreview', (req, res) => {
 
-        let { bookingId, rating, review, avgcost } = req.body
-    
-        //Check if slot is already booked
-        Booking.find({
-            bookingId
-        })
-        .then(booking => {
+        let { bookingId, rating, review, avgcost, restaurantId } = req.body
             const newReview = new Review({
             bookingId,
-            restaurantId: booking.restaurantId,
+            restaurantId,
             rating,
             review,
             averageCostForTwo: avgcost
@@ -129,10 +123,7 @@ router.post('/:RestaurantId', (req, res) => {
                 console.log(err)
             })
         })               
-        .catch(err => {
-            console.log(err)
-        })
-    })  
+        
 
 //@route DELETE api/bookings/:RestaurantId/:bookingId
 // @desc Cancel a booking
