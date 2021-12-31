@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 // import { BrowserRouter as Switch, Route, Link } from "react-router-dom";
+import { Card, Button, CardTitle, CardText, Table } from 'reactstrap';
 import axios, { post } from "axios";
 import Swal from "sweetalert2";
 import { Tabs } from 'antd';
-import { Tag, Divider } from "antd";
+// import { Tag, Divider } from "antd";
 const { TabPane } = Tabs;
 
 
@@ -149,44 +150,42 @@ export function MyBookings() {
           }
 
     return (
-        <div className="row">
-            <div className="col-md-12 m-2">
+        <div /*className="row"*/>
                 <h1 className="text-center">Bookings</h1>
-                {/* {loading && <Loader />} */}
                 {bookings.length &&
                     bookings.map((booking) => {
                         return (
-                            <div className="bs booking-card" key={booking._id}>
-                                {/* <h1>{booking.userId}</h1>
-                    {console.log(booking.date)}; */}
-                                {/* <p>
-                      <b>Booking ID: {booking._id}</b>
-                    </p> */}
-                                <p>
-                                    <b>Date: {booking.date}</b>
-                                </p>
-                                <p>
-                                    <b>Restaurant: {booking.restaurant.name}</b>
-                                </p>
-                                <p>
-                                    <b>Time: {booking.time}</b>
-                                </p>
-                                <p>
-                                    <b>Number of People: {booking.numberOfPeople}</b>
-                                </p>
-                                <p>
-                                    <b>Address: {booking.restaurant.address}</b>
-                                </p>
-                                <p>
-                                    <b>Rating: </b>
-                                    <input
+                            <div className="" key={booking._id}>
+                                <Card inverse style={{ borderColor: '#333', padding: -30 }}>
+                                  <CardText>
+                                  <Table style={{margin: 0, padding:0, boxSizing:"border-box"}}>
+                                    <thead>
+                                      <tr>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Number of People</th>
+                                        <th>Address</th>
+                                        <th>Rating</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td> {booking.date}</td>
+                                        <td>{booking.time}</td>
+                                        <td>{booking.numberOfPeople}</td>
+                                        <td>{booking.restaurant.address}</td>
+                                        <td> <input
                                     type="number"
                                     placeholder="Rating"
                                     value={rating}
                                     name="Rating"
                                     onChange={(e) => setRating(e.target.value)}
-                                    />
-                                </p>
+                                    /></td>
+                                      </tr>
+                                    </tbody>
+                                  </Table>
+                                  </CardText>
+                                </Card>
                                 <br/>
                                 <p>
                                     <b>Review: </b>
@@ -199,6 +198,7 @@ export function MyBookings() {
                                     />
                                 </p>
                                 <br/>
+                                {/*                                 
                                 <p>
                                     <b>Average Cost For Two: </b>
                                     <input
@@ -209,6 +209,8 @@ export function MyBookings() {
                                     onChange={(e) => setavgcost(e.target.value)}
                                     />
                                 </p>
+                                 */}
+
                                 <br/>
                                 <button onClick={()=>{addreview(booking._id, booking.restaurantId)}}>
                                     Add Review
@@ -278,6 +280,5 @@ export function MyBookings() {
                         );
                     })}
             </div>
-        </div>
     );
 }
