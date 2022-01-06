@@ -4,8 +4,11 @@ import { Card, Button, CardText, Table,Modal, ModalBody, ModalHeader, Form, Form
 import axios, { post } from "axios";
 import Swal from "sweetalert2";
 import { Tabs } from 'antd';
+
 import ReactStars from "react-rating-stars-component";
 import { render } from "react-dom";
+
+
 
 const { TabPane } = Tabs;
 
@@ -104,9 +107,18 @@ export function MyBookings() {
         fetchdata();
     }, []);
     
+
   
     const onFormSubmit = (e, name) => {
         e.preventDefault()
+
+    
+    const onChange = (e) =>{
+        setfile(e.target.files[0])
+      }
+    const onFormSubmit = name => e => {
+        e.preventDefault();
+
         const url = `http://localhost:5000/image/${name}`;
         
         const formData = new FormData();
@@ -154,7 +166,11 @@ export function MyBookings() {
 
     return (
         <div /*className="row"*/>
+
                 <h1 className="text-center">My Bookings</h1>
+
+               
+
                 {bookings.length &&
                     bookings.map((booking) => {
                         return (
@@ -195,6 +211,7 @@ export function MyBookings() {
                                 <ModalBody>
                                     <div className='row row-content'>
                                         <Col sm={{ size: 12 }} md={{ size: 12 }}>
+
                                             <Form onSubmit={(e)=>{e.preventDefault()}}>
                                                 <FormGroup row>
                                                     <Label htmlFor="rating" md={2}>Rating</Label>
@@ -211,6 +228,9 @@ export function MyBookings() {
                                                               fullIcon={<i className="fa fa-star"></i>}
                                                               activeColor="#ffd700"
                                                             />                                                      
+
+                                            
+
                                                         <FormFeedback>{errors.rating}</FormFeedback>
                                                     </Col>
                                                 </FormGroup>
@@ -230,21 +250,32 @@ export function MyBookings() {
                                                 <FormGroup row>
                                                     <Label htmlFor="file" md={2}>File Upload</Label>
                                                     <Col md={10}>
+
                                                         <Input type="file" id="file" name="image"
                                                             placeholder="Upload the images for the restaurant"
                                                             onChange={(e) => setfile(e.target.files[0])} />
                                                         <Button style={{marginLeft:"0px"}} type="submit" color="danger" onClick={(e)=>{onFormSubmit(e,booking.restaurant.name)}}>
+
+                                                        
                                                             Upload File
                                                         </Button>
                                                     </Col>
                                                 </FormGroup>
+
                                                 {/* <FormGroup row>
+
+                                                <FormGroup row>
+
                                                     <Col md={{ size: 10, offset: 2 }}>
                                                         <Button style={{marginLeft:"0px"}} type="submit" color="primary" onClick={()=>{addreview(booking._id, booking.restaurantId)}}>
                                                             Add Review
                                                         </Button>
                                                     </Col>
+
                                                 </FormGroup> */}
+
+                                                </FormGroup>
+
                                             </Form>
                                         </Col>
                                     </div>
