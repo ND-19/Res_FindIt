@@ -4,6 +4,12 @@ import { Card, Button, CardText, Table,Modal, ModalBody, ModalHeader, Form, Form
 import axios, { post } from "axios";
 import Swal from "sweetalert2";
 import { Tabs } from 'antd';
+
+import ReactStars from "react-rating-stars-component";
+import { render } from "react-dom";
+
+
+
 const { TabPane } = Tabs;
 
 
@@ -101,13 +107,20 @@ export function MyBookings() {
         fetchdata();
     }, []);
     
+
+  
+    const onFormSubmit = (e, name) => {
+        e.preventDefault()
+
     
     const onChange = (e) =>{
         setfile(e.target.files[0])
       }
     const onFormSubmit = name => e => {
         e.preventDefault();
+
         const url = `http://localhost:5000/image/${name}`;
+        
         const formData = new FormData();
         
         formData.append('image', file);
@@ -148,10 +161,16 @@ export function MyBookings() {
               Swal.fire("Oops", "Something went wrong", "error");
             }
           }
+        
+          
 
     return (
         <div /*className="row"*/>
-                <h1 className="text-center">Bookings</h1>
+
+                <h1 className="text-center">My Bookings</h1>
+
+               
+
                 {bookings.length &&
                     bookings.map((booking) => {
                         return (
@@ -192,17 +211,26 @@ export function MyBookings() {
                                 <ModalBody>
                                     <div className='row row-content'>
                                         <Col sm={{ size: 12 }} md={{ size: 12 }}>
-                                            <Form onSubmit={(event)=> {event.preventDefault();}}>
+
+                                            <Form onSubmit={(e)=>{e.preventDefault()}}>
                                                 <FormGroup row>
                                                     <Label htmlFor="rating" md={2}>Rating</Label>
                                                     <Col md={10}>
-                                                        <Input type="number" id="rating" name="rating"
-                                                            placeholder="Add rating (0-5)"
-                                                            value={rating}
-                                                            valid={Number.isInteger(errors.rating)}
-                                                            invalid={isNaN(errors.rating)}
-                                                            onBlur={() => { settouched({ ...touched, rating: true }) }}
-                                                            onChange={(e) => { setRating(e.target.value) }} />
+                                                            <ReactStars
+                                                              count={5}
+                                                              onChange={(newRating) => {
+                                                                console.log(newRating);
+                                                              }}
+                                                              size={24}
+                                                              isHalf={true}
+                                                              emptyIcon={<i className="far fa-star"></i>}
+                                                              halfIcon={<i className="fa fa-star-half-alt"></i>}
+                                                              fullIcon={<i className="fa fa-star"></i>}
+                                                              activeColor="#ffd700"
+                                                            />                                                      
+
+                                            
+
                                                         <FormFeedback>{errors.rating}</FormFeedback>
                                                     </Col>
                                                 </FormGroup>
@@ -222,23 +250,32 @@ export function MyBookings() {
                                                 <FormGroup row>
                                                     <Label htmlFor="file" md={2}>File Upload</Label>
                                                     <Col md={10}>
-                                                        <Input type="file" id="file" name="file"
+
+                                                        <Input type="file" id="file" name="image"
                                                             placeholder="Upload the images for the restaurant"
-                                                            onBlur={() => { settouched({ ...touched, review: true }) }}
-                                                            onChange={onChange} />
-      
-                                                        <Button style={{marginLeft:"0px"}} type="submit" color="danger" onClick={()=>{onFormSubmit(booking.restaurant.name)}}>
+                                                            onChange={(e) => setfile(e.target.files[0])} />
+                                                        <Button style={{marginLeft:"0px"}} type="submit" color="danger" onClick={(e)=>{onFormSubmit(e,booking.restaurant.name)}}>
+
+                                                        
                                                             Upload File
                                                         </Button>
                                                     </Col>
                                                 </FormGroup>
+
+                                                {/* <FormGroup row>
+
                                                 <FormGroup row>
+
                                                     <Col md={{ size: 10, offset: 2 }}>
                                                         <Button style={{marginLeft:"0px"}} type="submit" color="primary" onClick={()=>{addreview(booking._id, booking.restaurantId)}}>
                                                             Add Review
                                                         </Button>
                                                     </Col>
+
+                                                </FormGroup> */}
+
                                                 </FormGroup>
+
                                             </Form>
                                         </Col>
                                     </div>

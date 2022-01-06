@@ -71,7 +71,3 @@ app.post('/image/:name', upload.single('image'), (req, res, next) => {
 app.listen(port, () =>
     console.log(`Server running on port no. ${port} using Nodemon`)
 );
-
-
-
-
