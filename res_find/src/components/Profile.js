@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 // import { BrowserRouter as Switch, Route, Link } from "react-router-dom";
+import { Card, Button, CardText, Table,Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, Col, FormFeedback } from 'reactstrap';
 import axios, { post } from "axios";
 import Swal from "sweetalert2";
 import { Tabs } from 'antd';
-import { Tag, Divider } from "antd";
+import ReactStars from "react-rating-stars-component";
+import { render } from "react-dom";
+
 const { TabPane } = Tabs;
+
 
 
 const Profile = () => {
@@ -60,9 +64,30 @@ export function MyBookings() {
     const [bookings, setbookings] = useState([]);
     const [review, setReview] = useState("");
     const [rating, setRating] = useState();
+    const [modal, setmodal] = useState(false)
     const [avgcost, setavgcost] = useState();
     const [file, setfile] = useState(null)
     const user = JSON.parse(localStorage.getItem("currentUser"));
+    const [touched, settouched] = useState({
+        rating: false,
+        review: false,
+        dropdownValue: false
+    })
+    const validate = (rating, review) => {
+        const errors = {
+            rating: '',
+            review: '',
+        };
+        if (touched.rating && (rating<0 || rating>5))
+            errors.rating = 'Ratings should be a number b/w 0 to 5';
+
+        if (touched.review && review.length===0)
+            errors.review = 'Review should not be empty';
+        return errors;
+    }
+    const errors = validate(rating, review);
+    
+    
     useEffect(() => {
         async function fetchdata() {
             try {
@@ -78,12 +103,12 @@ export function MyBookings() {
         }
         fetchdata();
     }, []);
-    const onChange = (e) =>{
-        setfile(e.target.files[0])
-      }
-    const onFormSubmit = name => e => {
-        e.preventDefault();
+    
+  
+    const onFormSubmit = (e, name) => {
+        e.preventDefault()
         const url = `http://localhost:5000/image/${name}`;
+        
         const formData = new FormData();
         
         formData.append('image', file);
@@ -95,45 +120,21 @@ export function MyBookings() {
         post(url, formData, config)
             .then((response) => {
                 alert(response.data.msg);
-                // window.location.href='/profile'
             })
     }
 
-    //     async function cancelbooking(bookingid, roomid) {
-    //         try {
-    //         //   setloading(true);
-    //           const result = await (
-    //             await axios.post("api/bookings/cancelbooking", { bookingid, restaurantId })
-    //           ).data;
-    //           console.log(result);
-    //         //   setloading(false);
-    //           Swal.fire(
-    //             "Congratulations",
-    //             "Your booking has been cancelled successfully",
-    //             "success"
-    //           ).then((result) => {
-    //             window.location.reload();
-    //           });
-    //         } catch (error) {
-    //           console.log(error);
-    //         //   setloading(false);
-    //           Swal.fire("Oops", "Something went wrong", "error");
-    //         }
-    //       }
-
-          async function addreview(bookingid) {
+          async function addreview(bookingId, restaurantId) {
             try {
-                console.log(bookingid)
               const result = await (
                 await axios.post("http://localhost:5000/api/bookings/reviews/addreview", {
-                  bookingid,
+                  bookingId,
                   rating,
                   review,
-                  avgcost
+                  avgcost,
+                  restaurantId
                 })
               ).data;
-              
-              console.log(result);
+            
             //   setloading(false);
               Swal.fire(
                 "Congratulations",
@@ -148,137 +149,111 @@ export function MyBookings() {
               Swal.fire("Oops", "Something went wrong", "error");
             }
           }
+        
+          
 
     return (
-        <div className="row">
-            <div className="col-md-12 m-2">
-                <h1 className="text-center">Bookings</h1>
-                {/* {loading && <Loader />} */}
+        <div /*className="row"*/>
+                <h1 className="text-center">My Bookings</h1>
                 {bookings.length &&
                     bookings.map((booking) => {
                         return (
-                            <div className="bs booking-card" key={booking._id}>
-                                {/* <h1>{booking.userId}</h1>
-                    {console.log(booking.date)}; */}
-                                {/* <p>
-                      <b>Booking ID: {booking._id}</b>
-                    </p> */}
-                                <p>
-                                    <b>Date: {booking.date}</b>
-                                </p>
-                                <p>
-                                    <b>Restaurant: {booking.restaurant.name}</b>
-                                </p>
-                                <p>
-                                    <b>Time: {booking.time}</b>
-                                </p>
-                                <p>
-                                    <b>Number of People: {booking.numberOfPeople}</b>
-                                </p>
-                                <p>
-                                    <b>Address: {booking.restaurant.address}</b>
-                                </p>
-                                <p>
-                                    <b>Rating: </b>
-                                    <input
-                                    type="number"
-                                    placeholder="Rating"
-                                    value={rating}
-                                    name="Rating"
-                                    onChange={(e) => setRating(e.target.value)}
-                                    />
-                                </p>
+                            <div className="" key={booking._id}>
+                                <Card inverse style={{ borderColor: '#333', padding: -30 }}>
+                                  <CardText>
+                                  <Table style={{margin: 0, padding:0, boxSizing:"border-box"}}>
+                                    <thead>
+                                      <tr>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Number of People</th>
+                                        <th>Address</th>
+                                        <th>Rating</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td> {booking.date}</td>
+                                        <td>{booking.time}</td>
+                                        <td>{booking.numberOfPeople}</td>
+                                        <td>{booking.restaurant.address}</td>
+                                        <td>
+                                          <Button onClick={()=>{setmodal(!modal)}}>
+                                            Add Review
+                                          </Button>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </Table>
+                                  </CardText>
+                                </Card>
                                 <br/>
-                                <p>
-                                    <b>Review: </b>
-                                    <textarea
-                                    type="text"
-                                    placeholder="Review"
-                                    value={review}
-                                    name="Review"
-                                    onChange={(e) => setReview(e.target.value)}
-                                    />
-                                </p>
-                                <br/>
-                                <p>
-                                    <b>Average Cost For Two: </b>
-                                    <input
-                                    type="Number"
-                                    placeholder="Average Cost For Two"
-                                    value={avgcost}
-                                    name="Average Cost For Two"
-                                    onChange={(e) => setavgcost(e.target.value)}
-                                    />
-                                </p>
-                                <br/>
-                                <button onClick={()=>{addreview(booking._id)}}>
-                                    Add Review
-                                </button>
-                                <br/><br/>
-                                <form onSubmit={onFormSubmit(booking.restaurant.name)}>
-                                    <h5>File Upload</h5>
-                                    <input type="file" name="image" onChange={onChange} />
-                                    <button type="submit">Upload</button>
-                                </form>
 
-                                {/* {booking.status !== "cancelled" && (
-                      <div className="text-right mt-2">
-                        {" "}
-                        <button
-                          className="btn btn-primary"
-                          onClick={() => {
-                            cancelbooking(booking._id, booking.roomid);
-                          }}
-                        >
-                          CANCEL BOOKING
-                        </button>{" "}
-                        <div className="d-flex flex-column justify-content-center">
-                          <div className="" style={{ fontSize: "24px" }}>
-                            Rating:
-                          </div>
-                          <div style={{ width: "50px" }}>
-                            <input
-                              type="number"
-                              name="rating"
-                              value={rating}
-                              onChange={(e) => {
-                                setRating(e.target.value);
-                              }}
-                            />
-                          </div>
-                          <div style={{ fontSize: "24px" }}>Review:</div>
-                          <textarea
-                            rows="10"
-                            cols="50"
-                            onChange={(e) => {
-                              setReview(e.target.value);
-                            }}
-                            value={review}
-                          ></textarea>
-                          <div className="row mt-3">
-                            <div className="col-2 offset-1">
-                              <button
-                                className="btn btn-primary"
-                                onClick={() => {
-                                  addreview(
-                                    booking._id,
-                                    booking.restaurantId,
-                                    rating,
-                                    review
-                                  );
-                                }}
-                              >
-                                ADD REVIEW
-                              </button>{" "}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}/ */}
+                                {/* Modal Starts */}
+                                <Modal isOpen={modal} toggle={() => { setmodal(!modal) }} className='modal-lg'>
+                                <ModalHeader toggle={() => { setmodal(!modal) }}>Add Review</ModalHeader>
+                                <ModalBody>
+                                    <div className='row row-content'>
+                                        <Col sm={{ size: 12 }} md={{ size: 12 }}>
+                                            <Form onSubmit={(e)=>{e.preventDefault()}}>
+                                                <FormGroup row>
+                                                    <Label htmlFor="rating" md={2}>Rating</Label>
+                                                    <Col md={10}>
+                                                            <ReactStars
+                                                              count={5}
+                                                              onChange={(newRating) => {
+                                                                console.log(newRating);
+                                                              }}
+                                                              size={24}
+                                                              isHalf={true}
+                                                              emptyIcon={<i className="far fa-star"></i>}
+                                                              halfIcon={<i className="fa fa-star-half-alt"></i>}
+                                                              fullIcon={<i className="fa fa-star"></i>}
+                                                              activeColor="#ffd700"
+                                                            />                                                      
+                                                        <FormFeedback>{errors.rating}</FormFeedback>
+                                                    </Col>
+                                                </FormGroup>
+                                                <FormGroup row>
+                                                    <Label htmlFor="review" md={2}>review</Label>
+                                                    <Col md={10}>
+                                                        <Input type="text" id="review" name="review"
+                                                            placeholder="Add a review for the restaurant"
+                                                            value={review}
+                                                            valid={errors.review === ''}
+                                                            invalid={errors.review !== ''}
+                                                            onBlur={() => { settouched({ ...touched, review: true }) }}
+                                                            onChange={(e) => { setReview(e.target.value) }} />
+                                                        <FormFeedback>{errors.review}</FormFeedback>
+                                                    </Col>
+                                                </FormGroup>
+                                                <FormGroup row>
+                                                    <Label htmlFor="file" md={2}>File Upload</Label>
+                                                    <Col md={10}>
+                                                        <Input type="file" id="file" name="image"
+                                                            placeholder="Upload the images for the restaurant"
+                                                            onChange={(e) => setfile(e.target.files[0])} />
+                                                        <Button style={{marginLeft:"0px"}} type="submit" color="danger" onClick={(e)=>{onFormSubmit(e,booking.restaurant.name)}}>
+                                                            Upload File
+                                                        </Button>
+                                                    </Col>
+                                                </FormGroup>
+                                                {/* <FormGroup row>
+                                                    <Col md={{ size: 10, offset: 2 }}>
+                                                        <Button style={{marginLeft:"0px"}} type="submit" color="primary" onClick={()=>{addreview(booking._id, booking.restaurantId)}}>
+                                                            Add Review
+                                                        </Button>
+                                                    </Col>
+                                                </FormGroup> */}
+                                            </Form>
+                                        </Col>
+                                    </div>
+                                </ModalBody>
+                            </Modal>
+                            {/* Modal Ends */}
                             </div>
                         );
                     })}
             </div>
-        </div>
     );
 }

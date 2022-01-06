@@ -51,12 +51,12 @@ const onFormSubmit = () => {
                     <input type="password" className="form-control" placeholder="Enter password" onChange={(e) => {setpassword(e.target.value)}}/>
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-block" onClick={onFormSubmit}><Link to="/sign-in" style={{textDecoration:"none",color:"white"}}> Sign Up </Link></button>
+                <button type="submit" className="btn btn-primary btn-block" onClick={onFormSubmit}><Link to="/login" style={{textDecoration:"none",color:"white"}}> Sign Up </Link></button>
                 <p className="forgot-password text-right">
-                    Already registered<Link className="nav-link" to={"/sign-in"}>Login?</Link>
+                    Already registered<Link className="nav-link" to={"/login"}>Login?</Link>
                 </p>
                 <Switch>
-            <Route path="/sign-in" component={Login} />
+            <Route path="/login" component={Login} />
              </Switch>
             </form>
         );

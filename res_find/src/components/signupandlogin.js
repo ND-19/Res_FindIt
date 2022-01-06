@@ -12,8 +12,8 @@ function Form() {
         <div className="auth-inner">
           <Switch>
             <Route exact path='/login' component={Login} />
-            <Route path="/sign-in" component={Login} />
-            <Route path="/sign-up" component={SignUp} />
+            {/* <Route path="/sign-in" component={Login} /> */}
+            <Route exact path="/sign-up" component={SignUp} />
           </Switch>
         </div>
       </div>

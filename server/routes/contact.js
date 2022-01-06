@@ -5,8 +5,8 @@ const nodemailer = require('nodemailer')
 const contactEmail = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-    user: "nityanshdoshi2001@gmail.com",
-    pass: "********",
+    user: "sahilsatpute04@gmail.com",
+    pass: "Sahil@#12345",
   },
   tls: {
       rejectUnauthorized: false
