@@ -26,7 +26,7 @@ mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true, useCreat
         // set static folder
         app.use(express.static("res_find/build"));
         app.get("*", (req, res) => {
-          res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+          res.sendFile(path.resolve(__dirname, "res_find", "build", "index.html"));
         });
       }
 
