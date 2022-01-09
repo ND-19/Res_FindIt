@@ -2,14 +2,14 @@ const express = require("express");
 const mongoose = require("mongoose")
 const cors = require("cors")
 require('dotenv').config()
-const db = process.env.mongoURILocal
+
 const multer = require('multer');
 const imgModel = require('./models/Image');
 var fs = require('fs');
 var path = require('path');
 const port = process.env.PORT || 5000;
 const app = express();
-
+const db = process.env.mongoURILocal
 app.use(express.json())
 app.use(cors())
 
