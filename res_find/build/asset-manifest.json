@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c0d685d3.chunk.css",
+    "main.js": "/static/js/main.028c828e.chunk.js",
+    "main.js.map": "/static/js/main.028c828e.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.41c1ffa6.js",
+    "runtime-main.js.map": "/static/js/runtime-main.41c1ffa6.js.map",
+    "static/css/2.4659568d.chunk.css": "/static/css/2.4659568d.chunk.css",
+    "static/js/2.106f99ff.chunk.js": "/static/js/2.106f99ff.chunk.js",
+    "static/js/2.106f99ff.chunk.js.map": "/static/js/2.106f99ff.chunk.js.map",
+    "static/js/3.f4091746.chunk.js": "/static/js/3.f4091746.chunk.js",
+    "static/js/3.f4091746.chunk.js.map": "/static/js/3.f4091746.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.4659568d.chunk.css.map": "/static/css/2.4659568d.chunk.css.map",
+    "static/css/main.c0d685d3.chunk.css.map": "/static/css/main.c0d685d3.chunk.css.map",
+    "static/js/2.106f99ff.chunk.js.LICENSE.txt": "/static/js/2.106f99ff.chunk.js.LICENSE.txt",
+    "static/media/HeroDesign.70d4607c.png": "/static/media/HeroDesign.70d4607c.png",
+    "static/media/hero.160610bb.jpg": "/static/media/hero.160610bb.jpg",
+    "static/media/home.e0b72a16.svg": "/static/media/home.e0b72a16.svg",
+    "static/media/restaurant.4dcc0c82.svg": "/static/media/restaurant.4dcc0c82.svg",
+    "static/media/restaurant.5e9538ed.jpg": "/static/media/restaurant.5e9538ed.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.41c1ffa6.js",
+    "static/css/2.4659568d.chunk.css",
+    "static/js/2.106f99ff.chunk.js",
+    "static/css/main.c0d685d3.chunk.css",
+    "static/js/main.028c828e.chunk.js"
+  ]
+}
