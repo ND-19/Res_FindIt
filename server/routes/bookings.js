@@ -107,7 +107,7 @@ router.post('/:RestaurantId', (req, res) => {
 //add review /addreview
     router.post('/reviews/addreview', (req, res) => {
 
-        let { bookingId, rating, review, avgcost, restaurantId } = req.body
+        let { bookingId, rating, review, avgcost, restaurantId} = req.body
             const newReview = new Review({
             bookingId,
             restaurantId,

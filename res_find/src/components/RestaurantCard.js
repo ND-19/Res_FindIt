@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { Card, CardImg, CardBody, CardText, CardHeader, Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, DropdownItem, Col, Button, ButtonDropdown, FormFeedback, DropdownToggle, DropdownMenu } from 'reactstrap';
 import img from '../resources/restaurant.jpg';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../button.css'
+import Swal from 'sweetalert2';
 
 
 function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
@@ -26,6 +27,7 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
         email: false,
         dropdownValue: false
     })
+
     const toggle = () => {
         setdropdownOpen(!dropdownOpen);
     }
@@ -33,7 +35,12 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
         setdropdownValue(e.target.innerText)
     }
 
-
+    const arrayBufferToBase64 = (buffer) =>  {
+        var binary = '';
+        var bytes = [].slice.call(new Uint8Array(buffer));
+        bytes.forEach((b) => binary += String.fromCharCode(b));
+        return window.btoa(binary);
+    };
     const handleSubmit = (event) => {
         event.preventDefault();
     }
@@ -45,8 +52,14 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
                 const results = await(
                     await axios.post(`http://localhost:5000/api/bookings/${restaurant.res_id}`,{"userId": user._id,date,time,Restaurant,"numberOfPeople": dropdownValue, "email" : user.email})).data;
                     
-                    alert(results.msg)
-                    setmodal(!modal)
+                    Swal.fire(
+                        "Congratulations",
+                        "Booking successfull",
+                        "success"
+                    ).then(() => {
+                        setmodal(!modal)
+                    });
+                    
     
             } catch (error) {
                 console.log(error);
@@ -283,7 +296,7 @@ const Restaurants = ({ restaurants, onRestaurantClick, handleClick }) => {
 
     return (
 
-        <div className="container">
+        <div className="container" style={{position:"relative", zIndex:"1"}}>
 
             <input id='rescard' placeholder="Enter Restaurant Name" onChange={event => setQuery(event.target.value)} />
             <div>

@@ -1,8 +1,13 @@
 const pg = require('pg')
-const config = require('config')
-const mongoose = require('mongoose')
-
-const pool = new pg.Pool(config.get('postgresData'))
+require('dotenv').config()
+const pool = new pg.Pool({"user": process.env.PG_User, 
+"database": process.env.PG_Database, 
+"password": process.env.PG_Password, 
+"host": process.env.PG_Host,
+"port": process.env.PG_Port, 
+"max": 10, 
+"idleTimeoutMillis": 30000 
+})
 
 
 async function query(q, p) {

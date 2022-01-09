@@ -84,7 +84,7 @@ color: "#f9c74f" }}>
             {user ? (
               <>
                 {/* <h1>{user.name}</h1> */}
-                <div className="dropdown" style={{zIndex: "100"}}>
+                <div className="dropdown">
                   <button
                     className="btn btn-secondary dropdown-toggle"
                     type="button"
@@ -96,6 +96,7 @@ color: "#f9c74f" }}>
                     <i className="fa fa-user"></i> {user.firstName}
                   </button>
                   <ul
+                    style={{zIndex:"5"}}
                     className="dropdown-menu"
                     aria-labelledby="dropdownMenuButton1"
                   >

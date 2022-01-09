@@ -1,8 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose")
 const cors = require("cors")
-const config = require("config")
-const db = config.get('mongoURILocal')
+require('dotenv').config()
+const db = process.env.mongoURILocal
 const multer = require('multer');
 const imgModel = require('./models/Image');
 var fs = require('fs');
@@ -38,19 +38,20 @@ mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true, useCreat
     });
 
 var upload = multer({ storage: storage });
-// app.post('/image', (req, res) => {
-//     const { restaurantName } = req.body
-//     imgModel.findOne({ restaurantName })
-//     .then(image => {
-//         res.set("Content-Type", image.contentType);
-//        res.send( image.data );
-//     }).catch(err =>{
-//         console.log(err);
-//         res.status(500).send('An error occurred', err);
-//     })
-// });
+app.get('/image/getbyname/:name', (req, res) => {
+    
+    imgModel.findOne({ restaurantName:req.params.name })
+    .then(image => {
+        console.log(image)
+        res.set("Content-Type", image.contentType);
+       res.send( image.data );
+    }).catch(err =>{
+        console.log(err);
+        res.status(500).send('An error occurred', err);
+    })
+});
 app.post('/image/:name', upload.single('image'), (req, res, next) => {
-
+    
     const newImage = new imgModel({
         restaurantName: req.params.name,
         img: {
