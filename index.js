@@ -22,6 +22,14 @@ mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true, useCreat
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.log(err))
 
+    if (process.env.NODE_ENV === "production") {
+        // set static folder
+        app.use(express.static("res_find/build"));
+        app.get("*", (req, res) => {
+          res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+        });
+      }
+
     const storage = multer.diskStorage({
         destination: (req, file, cb) => {
           const dir = `./uploads/${req.params.name}`
@@ -38,6 +46,7 @@ mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true, useCreat
     });
 
 var upload = multer({ storage: storage });
+
 app.get('/image/getbyname/:name', (req, res) => {
     
     imgModel.findOne({ restaurantName:req.params.name })
@@ -69,6 +78,7 @@ app.post('/image/:name', upload.single('image'), (req, res, next) => {
 
 
 });
+
 app.listen(port, () =>
     console.log(`Server running on port no. ${port} using Nodemon`)
 );
