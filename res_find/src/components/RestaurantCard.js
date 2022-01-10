@@ -50,7 +50,7 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
         async function fetchData() {
             try {
                 const results = await(
-                    await axios.post(`http://localhost:5000/api/bookings/${restaurant.res_id}`,{"userId": user._id,date,time,Restaurant,"numberOfPeople": dropdownValue, "email" : user.email})).data;
+                    await axios.post(`/api/bookings/${restaurant.res_id}`,{"userId": user._id,date,time,Restaurant,"numberOfPeople": dropdownValue, "email" : user.email})).data;
                     
                     Swal.fire(
                         "Congratulations",

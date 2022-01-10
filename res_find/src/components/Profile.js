@@ -140,7 +140,7 @@ export function MyBookings() {
         async function fetchdata() {
             try {
                 const data = await (
-                    await axios.get(`http://localhost:5000/api/bookings/users/${user._id}`)
+                    await axios.get(`/api/bookings/users/${user._id}`)
                 ).data;
                 console.log(data);
                 setbookings(data.bookings);
@@ -158,7 +158,7 @@ export function MyBookings() {
 
         e.preventDefault();
 
-        const url = `http://localhost:5000/image/${name}`;
+        const url = `/image/${name}`;
 
         const formData = new FormData();
 
@@ -188,7 +188,7 @@ export function MyBookings() {
         e.preventDefault();
         try {
             const result = await (
-                await axios.post("http://localhost:5000/api/bookings/reviews/addreview", {
+                await axios.post("/api/bookings/reviews/addreview", {
                     bookingId,
                     rating,
                     review,

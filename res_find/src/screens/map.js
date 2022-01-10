@@ -87,10 +87,10 @@ function Map() {
         async function fetchData() {
             try {
                 const output = await (
-                    await axios.get(`http://localhost:5000/api/distance/getallcities`)).data;
+                    await axios.get(`/api/distance/getallcities`)).data;
                 setcities(output)
                 const results = await (
-                    await axios.get(`http://localhost:5000/api/distance/getdistance/${point}`)).data;
+                    await axios.get(`/api/distance/getdistance/${point}`)).data;
                 setmarkers(results)
                 // let newposition = [...position]
 
@@ -135,7 +135,7 @@ function Map() {
         async function fetchData() {
             try {
                 const results = await (
-                    await axios.get(`http://localhost:5000/api/distance/userdistancewithin/${point}/${radius}`)).data;
+                    await axios.get(`/api/distance/userdistancewithin/${point}/${radius}`)).data;
                 setmarkers(results)
                 console.log(results)
                 // console.log(newposition)
@@ -155,7 +155,7 @@ function Map() {
         async function fetchData() {
             try {
                 const results = await (
-                    await axios.get(`http://localhost:5000/api/distance/distancewithin/${id}/${radius}`)).data;
+                    await axios.get(`/api/distance/distancewithin/${id}/${radius}`)).data;
                 setmarkers(results)
                 console.log(results)
 
@@ -185,7 +185,7 @@ function Map() {
 
             try {
                 const results = await (
-                    await axios.get(`http://localhost:5000/api/distance/getrestaurants/${city}/${rating}/${costl}/${costu}/${opentime}/${closetime}`)).data;
+                    await axios.get(`/api/distance/getrestaurants/${city}/${rating}/${costl}/${costu}/${opentime}/${closetime}`)).data;
                 setmarkers(results)
                 // let newposition = [...position]
                 // newposition[0] = 
