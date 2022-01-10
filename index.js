@@ -22,13 +22,6 @@ mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true, useCreat
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.log(err))
 
-    if (process.env.NODE_ENV === "production") {
-        // set static folder
-        app.use(express.static("res_find/build"));
-        app.get("*", (req, res) => {
-          res.sendFile(path.resolve(__dirname, "res_find", "build", "index.html"));
-        });
-      }
 
     const storage = multer.diskStorage({
         destination: (req, file, cb) => {
@@ -78,6 +71,13 @@ app.post('/image/:name', upload.single('image'), (req, res, next) => {
 
 
 });
+if (process.env.NODE_ENV === "production") {
+    // set static folder
+    app.use(express.static("res_find/build"));
+    app.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname, "res_find", "build", "index.html"));
+    });
+  }
 
 app.listen(port, () =>
     console.log(`Server running on port no. ${port} using Nodemon`)
