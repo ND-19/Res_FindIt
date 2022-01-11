@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "reactstrap";
 import styled from "styled-components";
 import hero from "../assets/hero.jpg";
 import heroDesign from "../assets/HeroDesign.png";
@@ -22,7 +23,7 @@ export default function Hero() {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
             aspernatur itaque, eius quia voluptas numquam!
           </em>
-          <button>ORDER NOW</button>
+          <a className= "reserve" href={JSON.parse(localStorage.getItem("currentUser")) ? "/locator" : "/login"}>RESERVE NOW</a>
         </div>
       </div>
     </Section>
@@ -33,11 +34,12 @@ const Section = styled.section`
   height: 110vh;
   width: 100vw;
   top: -70px;
-  z-index: -5;
+  z-index: 5;
   position: relative;
   .background {
     height: 100%;
     img {
+      z-index: -50;
       object-fit: cover;
       width: 100%;
       height: 100%;
@@ -71,6 +73,7 @@ const Section = styled.section`
       }
     }
     .info {
+      z-index: 5;
       position: relative;
       top: 30%;
       right: 10%;
@@ -91,19 +94,6 @@ const Section = styled.section`
         line-height: 2rem;
         letter-spacing: 0.1rem;
       }
-      button {
-        padding: 1rem 2rem;
-        font-size: 1.4rem;
-        background-color: #fc4958;
-        border: none;
-        color: white;
-        font-weight: 800;
-        letter-spacing: 0.2rem;
-        transition: 0.3s ease-in-out;
-        cursor: pointer;
-        &:hover {
-          background-color: #f9c74f;
-        }
       }
     }
   }

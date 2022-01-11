@@ -7,6 +7,8 @@ export default function Navbar() {
 
   const Nav = styled.nav`
   display: flex;
+  z-index: 100;
+  position: relative;
   justify-content: space-between;
   align-items: center;
   padding: 0 4vw;

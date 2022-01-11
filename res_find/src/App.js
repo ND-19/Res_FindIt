@@ -9,7 +9,6 @@ import ScrollToTop from './components/ScrollToTop';
 import Services from './components/Services';
 import scrollreveal from "scrollreveal";
 import Form from "./components/signupandlogin";
-import SignUp from "./components/signup";
 import Profile from './components/Profile'
 
 function App() {

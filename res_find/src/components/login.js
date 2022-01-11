@@ -13,7 +13,7 @@ const Login = () => {
         async function fetchData() {
             try {
                 const results = await(
-                    await axios.post(`http://localhost:5000/api/users/user/`,{email,password})).data;
+                    await axios.post(`/api/users/user/`,{email,password})).data;
                     localStorage.setItem("currentUser", JSON.stringify(results));
                     if (JSON.parse(localStorage.getItem("currentUser"))) {
                         window.location.href = "/locator";

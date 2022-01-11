@@ -133,3 +133,20 @@ font-weight: bold;
 .profile-box{
   padding: 30px;
 }
+.reserve{
+    text-decoration: none;
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+    background-color: #fc4958;
+    border: none;
+    color: white;
+    font-weight: 800;
+    letter-spacing: 0.2rem;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+      
+}
+.reserve:hover{
+  color: #fc4958;
+  background-color: #f9c74f;
+}
