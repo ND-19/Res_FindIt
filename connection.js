@@ -1,12 +1,12 @@
 const pg = require('pg')
 require('dotenv').config()
-const pool = new pg.Pool({"user": process.env.PG_User, 
-"database": process.env.PG_Database, 
-"password": process.env.PG_Password, 
-"host": process.env.PG_Host,
-"port": process.env.PG_Port, 
-"max": 10, 
-"idleTimeoutMillis": 30000 
+const pool = new pg.Pool({
+    connectionString: `${process.env.DATABASE_URL}?sslmode=require`,
+    "max": 10,
+    "idleTimeoutMillis": 30000,
+    ssl:{
+        rejectUnauthorized: false,
+    }
 })
 
 
