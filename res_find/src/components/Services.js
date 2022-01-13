@@ -10,33 +10,31 @@ export default function Services() {
       <div className="title">
         <h1 className="yellow">What we do?</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur,
-          incidunt magnam labore ipsam vero minima maxime doloribus dolores ipsa
-          soluta.
+        Customers use our platform to search and discover restaurants, write reviews and view and upload photos and book a table at a restaurant.
         </p>
       </div>
       <div className="services">
         <div className="service">
           <img src={Services2} alt="" />
           <p>
-            He Printing and Typesetting the industry. <span>Lorem Ipsum</span>{" "}
-            has been the Industry's
+             <span>Chef's</span><br/>
+             Passionate about food and cooking and enjoy the whole process of procuring, preparing, cooking and serving food.
           </p>
           <button>Read More</button>
         </div>
         <div className="service yellow">
           <img src={Services1} alt="" />
           <p>
-            He Printing and Typesetting the industry. <span>Lorem Ipsum</span>{" "}
-            has been the Industry's
+            <span>Food</span><br/>
+            Tasty, appetizing, scrumptious, yummy, luscious, delectable, mouth-watering, fit for a king, delightful, lovely, wonderful, pleasant, enjoyable, appealing, enchanting, charming.
           </p>
           <button>Read More</button>
         </div>
         <div className="service">
           <img src={Services3} alt="" />
           <p>
-            He Printing and Typesetting the industry. <span>Lorem Ipsum</span>{" "}
-            has been the Industry's
+            <span>Drinks</span><br/>
+            Warm up your parties or family gatherings with hot chocolate, flavored coffee, spiced tea, apple cider, slow cooker juice mixes and more.
           </p>
           <button>Read More</button>
         </div>

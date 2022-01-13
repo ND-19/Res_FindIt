@@ -24,7 +24,7 @@ mongoose.connect(process.env.mongoURILocal, { useUnifiedTopology: true, useNewUr
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const dir = `./uploads/${req.params.name}`
+        const dir = `./res_find/public/uploads/${req.params.name}`
         fs.exists(dir, exist => {
             if (!exist) {
                 return fs.mkdir(dir, error => cb(error, dir))
@@ -33,7 +33,7 @@ const storage = multer.diskStorage({
         })
     },
     filename: (req, file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now())
+        cb(null, Date.now() + '-' + file.originalname)
     }
 });
 
@@ -56,7 +56,7 @@ app.post('/image/:name', upload.single('image'), (req, res, next) => {
     const newImage = new imgModel({
         restaurantName: req.params.name,
         img: {
-            data: fs.readFileSync(path.resolve(__dirname + '\\uploads\\' + `${req.params.name}\\` + req.file.filename)),
+            data: fs.readFileSync(path.resolve(__dirname + '\\res_find\\public\\uploads\\' + `${req.params.name}\\` + req.file.filename)),
             contentType: 'image/*'
         }
     })

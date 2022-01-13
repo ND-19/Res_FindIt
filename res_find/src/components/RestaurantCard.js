@@ -1,6 +1,6 @@
-import React, { useState} from 'react';
-import { Card, CardImg, CardBody, CardText, CardHeader, Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, DropdownItem, Col, Button, ButtonDropdown, FormFeedback, DropdownToggle, DropdownMenu } from 'reactstrap';
-import img from '../resources/restaurant.jpg';
+import React, { useEffect, useState } from 'react';
+import { Card, CardImg, CardBody, CardText, CardHeader, Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, DropdownItem, Col, Button, ButtonDropdown, FormFeedback, DropdownToggle, DropdownMenu, Carousel, CarouselItem, CarouselControl } from 'reactstrap';
+import imgdefault from '../resources/restaurant.jpg';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../button.css'
@@ -14,7 +14,13 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
     const [firstname, setfirstname] = useState(`${user.firstName}`);
     const [lastname, setlastname] = useState(`${user.lastName}`);
     const [email, setemail] = useState(`${user.email}`);
-    
+    var images = []
+    // State for Active index
+    const [activeIndex, setActiveIndex] = React.useState(0);
+
+    // State for Animation
+    const [animating, setAnimating] = React.useState(false);
+    const [img, setimg] = useState([])
     const [telnum, settelnum] = useState('');
     const [date, setdate] = useState('');
     const [time, settime] = useState('');
@@ -27,7 +33,51 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
         email: false,
         dropdownValue: false
     })
+    // Items array length
+    const imageslen = img.length - 1
 
+    // Previous button for Carousel
+    const previousButton = () => {
+        if (animating) return;
+        const nextIndex = activeIndex === 0 ?
+            imageslen : activeIndex - 1;
+        setActiveIndex(nextIndex);
+    }
+
+    // Next button for Carousel
+    const nextButton = () => {
+        if (animating) return;
+        const nextIndex = activeIndex === imageslen ?
+            0 : activeIndex + 1;
+        setActiveIndex(nextIndex);
+    }
+    const carouselItemData = img.map((item) => {
+        return (
+            <CarouselItem
+                key={item.default}
+                onExited={() => setAnimating(false)}
+                onExiting={() => setAnimating(true)}
+            >
+                <img src={item.default} className='img' style={{ width: "100%", height: "200px" }}  />
+            </CarouselItem>
+        );
+    })
+    const importAll = (r) => {
+
+        return r.keys().map(r);
+    }
+    useEffect(() => {
+        try{
+            const resfolder='../../public/uploads/' + restaurant.name
+            images = importAll(require.context(resfolder, false, /\.(png|jpe?g|svg)$/))
+            setimg(images)
+        }catch(err){
+            console.log("err")
+        }
+        
+
+    }, [])
+    
     const toggle = () => {
         setdropdownOpen(!dropdownOpen);
     }
@@ -35,7 +85,7 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
         setdropdownValue(e.target.innerText)
     }
 
-    const arrayBufferToBase64 = (buffer) =>  {
+    const arrayBufferToBase64 = (buffer) => {
         var binary = '';
         var bytes = [].slice.call(new Uint8Array(buffer));
         bytes.forEach((b) => binary += String.fromCharCode(b));
@@ -46,24 +96,24 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
     }
 
     const onReserve = () => {
-        const Restaurant = {"name": restaurant.name,"locality": restaurant.locality,"address": restaurant.address,"AvgCostForTwo": restaurant.average_cost_for_two}
+        const Restaurant = { "name": restaurant.name, "locality": restaurant.locality, "address": restaurant.address, "AvgCostForTwo": restaurant.average_cost_for_two }
         async function fetchData() {
             try {
-                const results = await(
-                    await axios.post(`/api/bookings/${restaurant.res_id}`,{"userId": user._id,date,time,Restaurant,"numberOfPeople": dropdownValue, "email" : user.email})).data;
-                    
-                    Swal.fire(
-                        "Congratulations",
-                        "Booking successfull",
-                        "success"
-                    ).then(() => {
-                        setmodal(!modal)
-                    });
-                    
-    
+                const results = await (
+                    await axios.post(`/api/bookings/${restaurant.res_id}`, { "userId": user._id, date, time, Restaurant, "numberOfPeople": dropdownValue, "email": user.email })).data;
+
+                Swal.fire(
+                    "Congratulations",
+                    "Booking successfull",
+                    "success"
+                ).then(() => {
+                    setmodal(!modal)
+                });
+
+
             } catch (error) {
                 console.log(error);
-    
+
             }
         }
         fetchData();
@@ -77,10 +127,10 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
             email: '',
             dropdownValue: ''
         };
-        if (touched.firstname && firstname.length===0)
+        if (touched.firstname && firstname.length === 0)
             errors.firstname = 'First Name should not be empty';
 
-        if (touched.lastname && lastname.length===0)
+        if (touched.lastname && lastname.length === 0)
             errors.lastname = 'Last Name should not be empty';
 
         const reg = /^\d+$/;
@@ -99,7 +149,22 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
             <Card key={restaurant.res_id} id="card">
                 <CardHeader tag="h3" id="cardh">{restaurant.name}</CardHeader>
                 <CardBody style={{ textAlign: "center" }} id='cardb'>
-                    <CardImg className='img' style={{ width: "100%", height: "200px" }} src={img} alt={restaurant.name} />
+                    {/* {console.log(img)} */}
+                    {img.length ? <Carousel previous={previousButton} next={nextButton}
+                        activeIndex={activeIndex}>
+                        {/* <CarouselIndicators items={items}
+                            activeIndex={activeIndex}
+                            onClickHandler={(newIndex) => {
+                                if (animating) return;
+                                setActiveIndex(newIndex);
+                            }} /> */}
+                        {carouselItemData}
+                        <CarouselControl directionText="Prev"
+                            direction="prev" onClickHandler={previousButton} />
+                        <CarouselControl directionText="Next"
+                            direction="next" onClickHandler={nextButton} />
+                    </Carousel> : <CardImg className='img' style={{ width: "100%", height: "200px" }} src={imgdefault} alt={restaurant.name} />}
+
 
                     <CardText>{restaurant.address}</CardText>
                     <table>
@@ -164,7 +229,7 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
                     style={{ width: "100%", backgroundColor: "lightcoral", height: "30px", borderRadius: "0px", borderTop: "1px solid black" }}
                 >Locate</button>
                 <button
-                     onClick={() => { setmodal(!modal) }} style={{ color: 'white' }}
+                    onClick={() => { setmodal(!modal) }} style={{ color: 'white' }}
                     className='button'
                     style={{ width: "100%", backgroundColor: "red", height: "30px", borderRadius: "0px", borderTop: "1px solid black" }}
                 >Reserve Table</button>
@@ -262,7 +327,7 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
                                 </FormGroup>
                                 <FormGroup row>
                                     <Col md={{ size: 10, offset: 2 }}>
-                                        <Button style={{marginLeft:"0px"}} type="submit" color="primary" onClick={onReserve}>
+                                        <Button style={{ marginLeft: "0px" }} type="submit" color="primary" onClick={onReserve}>
                                             Reserve
                                         </Button>
                                     </Col>
@@ -296,7 +361,7 @@ const Restaurants = ({ restaurants, onRestaurantClick, handleClick }) => {
 
     return (
 
-        <div className="container" style={{position:"relative", zIndex:"1"}}>
+        <div className="container" style={{ position: "relative", zIndex: "1" }}>
 
             <input id='rescard' placeholder="Enter Restaurant Name" onChange={event => setQuery(event.target.value)} />
             <div>

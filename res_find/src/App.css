@@ -150,3 +150,7 @@ font-weight: bold;
   color: #fc4958;
   background-color: #f9c74f;
 }
+.carousel-control-prev-icon,
+  .carousel-control-next-icon{
+    filter: invert(1)
+  }

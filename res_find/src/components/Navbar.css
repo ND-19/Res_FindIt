@@ -3,3 +3,64 @@ background-color: #485461;
 background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
 opacity: 1;
 }
+.Nav {
+display: flex;
+z-index: 100;
+position: relative;
+justify-content: space-between;
+align-items: center;
+padding: 0 4vw;
+}
+.Nav > .brand > img{
+    margin-top: 1rem;
+    cursor: pointer;
+  
+}
+.Nav > .brand >   .toggle {
+  display: none;
+}
+Nav > .links {
+  display: flex;
+  list-style-type: none;
+  gap: 2rem;
+ 
+}
+li{
+    margin-left: 3rem;
+    margin-top: 5px;
+    text-decoration: none;
+  }
+.navlink{
+
+  text-decoration: none;
+  color: #fc4958;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  transition: 0.3s ease-in-out;
+}
+
+.navlink:hover {
+  color: #f9c74f;
+}
+
+@media screen and (min-width: 260px) and (max-width: 1080px) {
+.Nav >  .brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    top: 0;
+  }
+  
+
+.Nav > .brand > .toggle {
+  display: inline-block;
+}
+
+li{
+  margin-left: 0px;
+  margin-top: 0px;
+  text-decoration: none;
+}
+}

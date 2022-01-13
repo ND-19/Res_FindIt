@@ -20,8 +20,7 @@ export default function Hero() {
         <div className="info">
           <h2>RETAILER</h2>
           <em>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
-            aspernatur itaque, eius quia voluptas numquam!
+          Discover the best food & drinks in the restaurants near you.
           </em>
           <a className= "reserve" href={JSON.parse(localStorage.getItem("currentUser")) ? "/locator" : "/login"}>RESERVE NOW</a>
         </div>

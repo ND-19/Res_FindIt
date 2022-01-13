@@ -4,7 +4,6 @@ import { TabContent, Row, Card, Button, CardText, Table, Modal, ModalBody, Modal
 import axios, { post } from "axios";
 import Swal from "sweetalert2";
 import classnames from 'classnames'
-
 import ReactStars from "react-rating-stars-component";
 
 
@@ -137,6 +136,7 @@ export function MyBookings() {
 
 
     useEffect(() => {
+
         async function fetchdata() {
             try {
                 const data = await (
@@ -169,7 +169,7 @@ export function MyBookings() {
             },
             onUploadProgress: data => {
                 //Set the progress value to show the progress bar
-                
+
                 setProgress(Math.round((100 * data.loaded) / data.total))
             },
         }
@@ -180,7 +180,7 @@ export function MyBookings() {
                     setProgress("0")
                 }, 5000);
             })
-            
+
     }
 
 
@@ -210,6 +210,7 @@ export function MyBookings() {
             //   setloading(false);
             Swal.fire("Oops", "Something went wrong", "error");
         }
+
     }
 
 
@@ -218,7 +219,6 @@ export function MyBookings() {
         <div /*className="row"*/>
 
             <h1 className="text-center">My Bookings</h1>
-
 
 
             {bookings.length &&
@@ -317,7 +317,7 @@ export function MyBookings() {
                                                         <Input type="file" id="file" name="image"
                                                             placeholder="Upload the images for the restaurant"
                                                             onChange={(e) => setfile(e.target.files[0])} />
-                                                        <Button style={{ marginLeft: "0px", marginBottom:"10px" }} type="submit" color="danger" onClick={(e) => { onFormSubmit(e, booking.restaurant.name) }}>
+                                                        <Button style={{ marginLeft: "0px", marginBottom: "10px" }} type="submit" color="danger" onClick={(e) => { onFormSubmit(e, booking.restaurant.name) }}>
 
 
                                                             Upload File
@@ -325,7 +325,6 @@ export function MyBookings() {
                                                         {progress && <Progress animated value={progress} >{progress} % </Progress>}
                                                     </Col>
                                                 </FormGroup>
-                                                
 
 
                                                 <FormGroup row>
@@ -349,6 +348,7 @@ export function MyBookings() {
                         </div>
                     );
                 })}
+         
         </div>
     );
 }       
