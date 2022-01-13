@@ -71,7 +71,7 @@ function Map() {
     const [position, setposition] = useState([0, 0]);
     const [dragposition, setdragposition] = useState([0, 0]);
     const [resposition, setresposition] = useState(false);
-   
+
     // const [name, setname] = useState('')
 
     //Get users location
@@ -220,112 +220,112 @@ function Map() {
 
 
     return (
-        
-        <div className="box">
-            {console.log("Hi")}
-            <div id="map">
-                <div className='querybox'>
-                    <div id='selectbox'>
-                        <div className='div1'>
-                            <select value={city} onChange={(e) => setcity(e.target.value)}>
-                                <option> Select City</option>
-                                {
-                                    cities.map((city) => (<option key={city.city} value={city.city}>{city.city}</option>))
-                                }
-                            </select>
-                        </div>
-                        <div className='div2'>
-                            <select value={rating} onChange={(e) => setrating(e.target.value)}>
-                                <option> Select Rating</option>
-                                {
-                                    ratingarr.map((rate) => (<option key={rate} value={rate}>Above {rate}</option>))
-                                }
-                            </select>
-                        </div>
-                        <div className='div3'>
-                            <select value={costl} onChange={(e) => setcostl(e.target.value)}>
-                                <option> Select Lower Limit</option>
-                                {
-                                    costlarr.map((lcost) => (<option key={lcost} value={lcost}>Above {lcost}</option>))
-                                }
-                            </select>
-                        </div>
-                        <div className='div4'>
-                            <select value={costu} onChange={(e) => setcostu(e.target.value)}>
-                                <option> Select Upper Limit</option>
-                                {
-                                    costuarr.map((ucost) => (<option key={ucost} value={ucost}>Below {ucost}</option>))
-                                }
-                            </select>
-                        </div>
-                        <div className='div5'>
-                            <select value={opentime} onChange={(e) => setopentime(e.target.value)}>
-                                <option> Select Opentime</option>
-                                {
-                                    opentimearr.map((open) => (<option key={open} value={open}>After {open}</option>))
-                                }
-                            </select>
-                        </div>
-                        <div className='div6'>
-                            <select value={closetime} onChange={(e) => setclosetime(e.target.value)}>
-                                <option> Select Closetime</option>
-                                {
-                                    closetimearr.map((close) => (<option key={close} value={close}>Before {close}</option>))
-                                }
-                            </select>
-                        </div>
-                        <div className='div7'>
-                            <button className='button' onClick={handleSubmit}>Click</button>
-                        </div>
-                    </div>
-                    <div className='coordbox'>
-                        <div className='div1'>
-                            <input
-                                type="text"
 
-                                placeholder="Point1"
-                                value={p1}
-                                name="point1"
-                                onChange={(e) => setp1(e.target.value)}
-                            />
+        <div className="container-fluid">
+            <div className='row'>
+                <div className="map col-md-12 col-lg-9">
+                    <div className='querybox row'>
+                        <div className='selectbox col-xs-5 col-md-5'>
+                            <div className='div1'>
+                                <select value={city} onChange={(e) => setcity(e.target.value)}>
+                                    <option> Select City</option>
+                                    {
+                                        cities.map((city) => (<option key={city.city} value={city.city}>{city.city}</option>))
+                                    }
+                                </select>
+                            </div>
+                            <div className='div2'>
+                                <select value={rating} onChange={(e) => setrating(e.target.value)}>
+                                    <option> Select Rating</option>
+                                    {
+                                        ratingarr.map((rate) => (<option key={rate} value={rate}>Above {rate}</option>))
+                                    }
+                                </select>
+                            </div>
+                            <div className='div3'>
+                                <select value={costl} onChange={(e) => setcostl(e.target.value)}>
+                                    <option> Select Lower Limit</option>
+                                    {
+                                        costlarr.map((lcost) => (<option key={lcost} value={lcost}>Above {lcost}</option>))
+                                    }
+                                </select>
+                            </div>
+                            <div className='div4'>
+                                <select value={costu} onChange={(e) => setcostu(e.target.value)}>
+                                    <option> Select Upper Limit</option>
+                                    {
+                                        costuarr.map((ucost) => (<option key={ucost} value={ucost}>Below {ucost}</option>))
+                                    }
+                                </select>
+                            </div>
+                            <div className='div5'>
+                                <select value={opentime} onChange={(e) => setopentime(e.target.value)}>
+                                    <option> Select Opentime</option>
+                                    {
+                                        opentimearr.map((open) => (<option key={open} value={open}>After {open}</option>))
+                                    }
+                                </select>
+                            </div>
+                            <div className='div6'>
+                                <select value={closetime} onChange={(e) => setclosetime(e.target.value)}>
+                                    <option> Select Closetime</option>
+                                    {
+                                        closetimearr.map((close) => (<option key={close} value={close}>Before {close}</option>))
+                                    }
+                                </select>
+                            </div>
+                            <div className='div7'>
+                                <button className='button' onClick={handleSubmit}>Click</button>
+                            </div>
                         </div>
-                        <div className='div2'>
+                        <div className='coordbox col-xs-5 offset-xs-1 col-md-5 '>
+                            <div className='div1'>
+                                <input
+                                    type="text"
 
-                            <input
-                                type="text"
+                                    placeholder="Point1"
+                                    value={p1}
+                                    name="point1"
+                                    onChange={(e) => setp1(e.target.value)}
+                                />
+                            </div>
+                            <div className='div2'>
 
-                                placeholder="Point2"
-                                value={p2}
-                                name="point2"
-                                onChange={(e) => setp2(e.target.value)}
-                            />
-                        </div>
-                        <div className='div3'>
+                                <input
+                                    type="text"
 
-                            <button className='button' onClick={() => { setpoint(`POINT(${p1} ${p2})`); }}>Click</button>
-                        </div>
-                        <div className='div4'>
+                                    placeholder="Point2"
+                                    value={p2}
+                                    name="point2"
+                                    onChange={(e) => setp2(e.target.value)}
+                                />
+                            </div>
+                            <div className='div3'>
 
-                            <input
-                                type="text"
+                                <button className='button' onClick={() => { setpoint(`POINT(${p1} ${p2})`); }}>Click</button>
+                            </div>
+                            <div className='div4'>
 
-                                placeholder="Radius"
-                                value={radius}
-                                name="radius"
-                                onChange={(e) => setradius(e.target.value)}
-                            />
-                        </div>
-                        <div className='div5'>
+                                <input
+                                    type="text"
 
-                            <button className='button' onClick={withinRadius}>Radius</button>
-                        </div>
-                        <div className='div6'>
+                                    placeholder="Radius"
+                                    value={radius}
+                                    name="radius"
+                                    onChange={(e) => setradius(e.target.value)}
+                                />
+                            </div>
+                            <div className='div5'>
 
-                            <button className='button' onClick={AtHome}>Home</button>
-                            {/* {console.log(rating)} */}
+                                <button className='button' onClick={withinRadius}>Radius</button>
+                            </div>
+                            <div className='div6'>
 
-                        </div>
-                        {/* <div id='div7'>
+                                <button className='button' onClick={AtHome}>Home</button>
+                                {/* {console.log(rating)} */}
+
+                            </div>
+                            {/* <div id='div7'>
 
                             <input
                                 type="text"
@@ -354,91 +354,92 @@ function Map() {
                             <button className='button' onClick={() => addPerson(name)}>Enter</button>
 
                         </div> */}
+                        </div>
+                    </div>
+                    {/* {console.log(position)} */}
+                    <div style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px" }}>
+                        <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+                            <ChangeMapView position={position} />
+                            <TileLayer
+                                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+
+                            />
+                            {markers.map(marker => (
+
+                                <Marker key={marker.res_id} icon={customMarkerRes} position={[marker.latitude, marker.longitude]}>
+                                    <Popup>
+                                        <table>
+                                            <tbody>
+                                                {marker.distance && (<tr>
+                                                    <td>Distance from current location</td>
+                                                    <td>{marker.distance.toPrecision(2)} km</td>
+                                                </tr>)}
+
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>{marker.name}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Type</td>
+                                                    <td>{marker.establishment}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Address</td>
+                                                    <td>{marker.address}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>City</td>
+                                                    <td>{marker.city}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Locality</td>
+                                                    <td>{marker.locality}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Open Time</td>
+                                                    <td><i>{parseInt(marker.open_time.slice(0, 2))}</i>
+                                                        {parseInt(marker.open_time.slice(0, 2)) === 12 ? <i> Pm</i> : <i> Am</i>}
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>Close Time</td>
+                                                    <td>
+                                                        {parseInt(marker.close_time.slice(0, 2)) - 12 === -12 ? <i>12 Am</i> : <i> {parseInt(marker.close_time.slice(0, 2)) - 12} Pm</i>}
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>Rating</td>
+                                                    <td>{marker.aggregate_rating}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cost for two</td>
+                                                    <td>{marker.average_cost_for_two}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cuisines</td>
+                                                    <td>{marker.cuisines}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Highlights</td>
+                                                    <td>{marker.highlights}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </Popup>
+                                </Marker>
+                            ))}
+                            <DraggableMarker dragposition={dragposition} setdragposition={setdragposition} setp1={setp1} setp2={setp2} />
+                            {/* {console.log(position)} */}
+                        </MapContainer>
                     </div>
                 </div>
-                {/* {console.log(position)} */}
-                <div style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px" }}>
-                    <MapContainer center={position} zoom={13} scrollWheelZoom={true}>
-                        <ChangeMapView position={position} />
-                        <TileLayer
-                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                <div className="scroll col-md-12 col-lg-3 p-0 mt-2">
 
-                        />
-                        {markers.map(marker => (
-
-                            <Marker key={marker.res_id} icon={customMarkerRes} position={[marker.latitude, marker.longitude]}>
-                                <Popup>
-                                    <table>
-                                        <tbody>
-                                            {marker.distance && (<tr>
-                                                <td>Distance from current location</td>
-                                                <td>{marker.distance.toPrecision(2)} km</td>
-                                            </tr>)}
-
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>{marker.name}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Type</td>
-                                                <td>{marker.establishment}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Address</td>
-                                                <td>{marker.address}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>City</td>
-                                                <td>{marker.city}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Locality</td>
-                                                <td>{marker.locality}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Open Time</td>
-                                                <td><i>{parseInt(marker.open_time.slice(0, 2))}</i>
-                                                    {parseInt(marker.open_time.slice(0, 2)) === 12 ? <i> Pm</i> : <i> Am</i>}
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>Close Time</td>
-                                                <td>
-                                                    {parseInt(marker.close_time.slice(0, 2)) - 12 === -12 ? <i>12 Am</i> : <i> {parseInt(marker.close_time.slice(0, 2)) - 12} Pm</i>}
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>Rating</td>
-                                                <td>{marker.aggregate_rating}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cost for two</td>
-                                                <td>{marker.average_cost_for_two}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cuisines</td>
-                                                <td>{marker.cuisines}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Highlights</td>
-                                                <td>{marker.highlights}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </Popup>
-                            </Marker>
-                        ))}
-                        <DraggableMarker dragposition={dragposition} setdragposition={setdragposition} setp1={setp1} setp2={setp2} />
-                        {/* {console.log(position)} */}
-                    </MapContainer>
+                    <Restaurants restaurants={markers} onRestaurantClick={onRestaurantClick} handleClick={handleClick} />
                 </div>
-            </div>
-            <div className="scroll">
-           
-                <Restaurants restaurants={markers} onRestaurantClick={onRestaurantClick} handleClick={handleClick} />
             </div>
         </div>
     )

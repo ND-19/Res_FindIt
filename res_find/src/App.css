@@ -63,19 +63,17 @@ font-weight: bold;
   padding: 0px;
 }
 
-#map{
+/* #map{
   margin-left: 10px;
   flex-basis: 300%;
-}
+} */
 .querybox{
   background: linear-gradient(to right, #fc4958, #e85d04);
   /* margin-left: 10px; */
-  display: flex;
-  flex-direction: row;
-  gap: 100px;
+  gap: 80px;
 }
 
-#selectbox{
+.selectbox{
   
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -84,7 +82,7 @@ font-weight: bold;
     grid-row-gap: 0px;
     
 }
-#selectbox select,button{
+.selectbox select,button{
   font-size: 14px;
   width: 150px;
 }
@@ -153,4 +151,20 @@ font-weight: bold;
 .carousel-control-prev-icon,
   .carousel-control-next-icon{
     filter: invert(1)
+  }
+  @media screen and (min-width: 260px) and (max-width: 1280px) {
+    .selectbox select,button{
+      font-size: 12px;
+      width: 100px;
+    }
+    .coordbox, .selectbox{
+      grid-column-gap: 5px;
+    }
+    .coordbox input,button{
+      font-size: 12px;
+      width: 100px;
+    }
+    .querybox{
+      gap:20px;
+    }
   }

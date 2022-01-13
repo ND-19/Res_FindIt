@@ -68,8 +68,9 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
     }
     useEffect(() => {
         try{
-            const resfolder='../../public/uploads/' + restaurant.name
-            images = importAll(require.context(resfolder, false, /\.(png|jpe?g|svg)$/))
+            
+            // console.log(resfolder)
+            images = importAll(require.context(`../../public/uploads/${restaurant.name}`, false, /\.(png|jpe?g|svg)$/))
             setimg(images)
         }catch(err){
             console.log("err")
@@ -315,12 +316,12 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
 
                                 </FormGroup>
                                 <FormGroup row>
-                                    <Label htmlfor="Date" md={2}>Date</Label>
+                                    <Label htmlFor="Date" md={2}>Date</Label>
                                     <Col md={4}>
                                         <Input type="date" name="date" id="Date" placeholder="date placeholder" onChange={(e) => { setdate(e.target.value) }} />
                                     </Col>
 
-                                    <Label md={{ size: 1, offset: 1 }} htmlfor="Time">Time</Label>
+                                    <Label md={{ size: 1, offset: 1 }} htmlFor="Time">Time</Label>
                                     <Col md={4}>
                                         <Input type="time" name="time" id="Time" placeholder="time placeholder" onChange={(e) => { settime(e.target.value) }} />
                                     </Col>
@@ -361,7 +362,7 @@ const Restaurants = ({ restaurants, onRestaurantClick, handleClick }) => {
 
     return (
 
-        <div className="container" style={{ position: "relative", zIndex: "1" }}>
+        <div className="container-fluid" style={{ position: "relative", zIndex: "1" }}>
 
             <input id='rescard' placeholder="Enter Restaurant Name" onChange={event => setQuery(event.target.value)} />
             <div>

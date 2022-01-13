@@ -20,7 +20,7 @@ export default function Navbar() {
           <img className="img" src={foodYummy} alt="Icon" />
         </div>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -28,13 +28,13 @@ export default function Navbar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon">
-            <i class="fa-solid fa-bars" style={{ color: "white" }}></i>
+          <span className="navbar-toggler-icon">
+            <i className="fa-solid fa-bars" style={{ color: "white" }}></i>
           </span>
         </button>
          {/* Navbar collapse */}
-          <div class="collapse navbar-collapse " id="navbarNav">
-            <ul class="navbar-nav ms-auto links">
+          <div className="collapse navbar-collapse " id="navbarNav">
+            <ul className="navbar-nav ms-auto links">
               <li>
                 <NavLink exact to="/" className ="navlink" activeStyle={{color: "#f9c74f"}}>
                   <h5 style={{ marginTop: "13px"}}>HOME</h5>

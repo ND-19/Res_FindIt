@@ -33,3 +33,9 @@
     opacity: 1;
     transition: 0s
   }
+  @media screen and (min-width: 260px) and (max-width: 1280px) {
+    .button{
+      font-size: 12px;
+      width: 100px;
+    }
+  }

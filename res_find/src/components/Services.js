@@ -20,7 +20,7 @@ export default function Services() {
              <span>Chef's</span><br/>
              Passionate about food and cooking and enjoy the whole process of procuring, preparing, cooking and serving food.
           </p>
-          <button>Read More</button>
+      
         </div>
         <div className="service yellow">
           <img src={Services1} alt="" />
@@ -28,7 +28,7 @@ export default function Services() {
             <span>Food</span><br/>
             Tasty, appetizing, scrumptious, yummy, luscious, delectable, mouth-watering, fit for a king, delightful, lovely, wonderful, pleasant, enjoyable, appealing, enchanting, charming.
           </p>
-          <button>Read More</button>
+      
         </div>
         <div className="service">
           <img src={Services3} alt="" />
@@ -36,7 +36,7 @@ export default function Services() {
             <span>Drinks</span><br/>
             Warm up your parties or family gatherings with hot chocolate, flavored coffee, spiced tea, apple cider, slow cooker juice mixes and more.
           </p>
-          <button>Read More</button>
+      
         </div>
       </div>
     </Section>
