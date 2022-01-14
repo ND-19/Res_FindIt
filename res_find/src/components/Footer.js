@@ -12,8 +12,7 @@ export default function Footer() {
         <div className="brand container">
           <img src={logo} alt="" />
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis,
-            repudiandae.
+          Discover the best food & drinks in the restaurants near you.
           </p>
           <ul>
             <li>
@@ -35,9 +34,7 @@ export default function Footer() {
             <h3>About Us</h3>
           </div>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam,
-            eligendi repellat laudantium blanditiis iure nulla, ut aliquam
-            itaque unde nesciunt cum veritatis perferendis vel expedita! Nam
+          Our technology platform connects customers, restaurant partners, serving their multiple needs. Customers use our platform to search and discover restaurants, write reviews and view and upload photos and book a table at restaurants.
           </p>
         </div>
         <div className="contact container">
@@ -65,7 +62,7 @@ const Section = styled.footer`
   color: white;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10vw;
+  gap: 6vw;
   padding: 4vw;
   p {
     font-size: 1.1rem;
@@ -111,6 +108,9 @@ const Section = styled.footer`
     gap: 0.5rem;
     h3 {
       font-size: 2rem;
+    }
+    p{
+      margin-left: 0;
     }
   }
   @media screen and (min-width: 260px) and (max-width: 1080px) {

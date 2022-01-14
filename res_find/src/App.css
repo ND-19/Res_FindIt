@@ -144,6 +144,21 @@ font-weight: bold;
     cursor: pointer;
       
 }
+.time + span {
+  padding-right: 30px;
+}
+
+.time:invalid+span:after {
+  position: absolute;
+  content: '✖';
+  padding-left: 5px;
+}
+
+.time:valid+span:after {
+  position: absolute;
+  content: '✓';
+  padding-left: 5px;
+}
 .reserve:hover{
   color: #fc4958;
   background-color: #f9c74f;

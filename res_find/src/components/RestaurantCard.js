@@ -14,6 +14,16 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
     const [firstname, setfirstname] = useState(`${user.firstName}`);
     const [lastname, setlastname] = useState(`${user.lastName}`);
     const [email, setemail] = useState(`${user.email}`);
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    if (mm < 10)
+        mm = '0' + mm.toString();
+    if (dd < 10)
+        dd = '0' + dd.toString();
+    var yyyy = today.getFullYear();
+    var now = yyyy + '-' + mm + '-' + dd;
+    var timenow = today.getHours() + ':00'
     var images = []
     // State for Active index
     const [activeIndex, setActiveIndex] = React.useState(0);
@@ -58,7 +68,7 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
                 onExited={() => setAnimating(false)}
                 onExiting={() => setAnimating(true)}
             >
-                <img src={item.default} className='img' style={{ width: "100%", height: "200px" }}  />
+                <img src={item.default} className='img' style={{ width: "100%", height: "200px" }} />
             </CarouselItem>
         );
     })
@@ -67,18 +77,18 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
         return r.keys().map(r);
     }
     useEffect(() => {
-        try{
-            
+        try {
+
             // console.log(resfolder)
             images = importAll(require.context(`../../public/uploads/${restaurant.name}`, false, /\.(png|jpe?g|svg)$/))
             setimg(images)
-        }catch(err){
+        } catch (err) {
             console.log("err")
         }
-        
+
 
     }, [])
-    
+
     const toggle = () => {
         setdropdownOpen(!dropdownOpen);
     }
@@ -317,14 +327,18 @@ function RenderRestaurantItem({ handleClick, restaurant, onRestaurantClick }) {
                                 </FormGroup>
                                 <FormGroup row>
                                     <Label htmlFor="Date" md={2}>Date</Label>
+
                                     <Col md={4}>
-                                        <Input type="date" name="date" id="Date" placeholder="date placeholder" onChange={(e) => { setdate(e.target.value) }} />
+                                        <Input type="date" min={now} name="date" id="Date" placeholder="date placeholder" onChange={(e) => { setdate(e.target.value) }} />
                                     </Col>
 
                                     <Label md={{ size: 1, offset: 1 }} htmlFor="Time">Time</Label>
-                                    <Col md={4}>
-                                        <Input type="time" name="time" id="Time" placeholder="time placeholder" onChange={(e) => { settime(e.target.value) }} />
+                                    <Col md={4} className='row'>
+                                        {console.log(timenow)}
+                                        <Input type="time" min="16:00" max="18:00" name="time" className='time' id="Time" placeholder="time placeholder" onChange={(e) => { settime(e.target.value) }} />
+                                        
                                     </Col>
+                                    
                                 </FormGroup>
                                 <FormGroup row>
                                     <Col md={{ size: 10, offset: 2 }}>

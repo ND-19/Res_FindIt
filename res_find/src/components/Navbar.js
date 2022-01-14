@@ -1,8 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import foodYummy from "../assets/FoodYummy.png";
 import { NavLink } from "react-router-dom";
-import styles from "./Navbar.css"
 
 export default function Navbar() {
 
@@ -36,13 +34,13 @@ export default function Navbar() {
           <div className="collapse navbar-collapse " id="navbarNav">
             <ul className="navbar-nav ms-auto links">
               <li>
-                <NavLink exact to="/" className ="navlink" activeStyle={{color: "#f9c74f"}}>
+                <NavLink exact to="/" className ="navlink" activeStyle={{color:"#f9c74f"}}>
                   <h5 style={{ marginTop: "13px"}}>HOME</h5>
                 </NavLink>
               </li>
               <li>
-                <NavLink exact to="/locator" className="navlink" activeStyle={{ color: "#f9c74f" }}>
-                  <h5 style={{ marginTop: "13px" }}>LOCATOR</h5>
+                <NavLink exact to={user ? "/locator" :"/login"} className="navlink" activeStyle={{color:"#f9c74f"}}>
+                  <h5 className={!user ? "inactivate" : ""} style={{ marginTop: "13px" }}>LOCATOR</h5>
                 </NavLink>
               </li>
               <li>
